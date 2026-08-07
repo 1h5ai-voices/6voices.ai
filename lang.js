@@ -6,6 +6,9 @@
     document.querySelectorAll(".lang-toggle button").forEach(function (btn) {
       btn.classList.toggle("active", btn.getAttribute("data-lang") === lang);
     });
+    document.querySelectorAll("[data-fr][data-en]").forEach(function (el) {
+      el.textContent = lang === "fr" ? el.getAttribute("data-fr") : el.getAttribute("data-en");
+    });
     try { localStorage.setItem("6voices-lang", lang); } catch (e) {}
   }
 
