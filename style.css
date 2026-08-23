@@ -22,7 +22,7 @@ body {
 /* ---------- Header + Hero band ---------- */
 .top-band {
   background: var(--rose-soft);
-  padding-bottom: 3.5rem;
+  padding-bottom: 0.4rem;
 }
 
 header.site-header {
@@ -79,7 +79,7 @@ nav.site-nav {
   font-size: 0.85rem;
   font-weight: 700;
   border-top: 1px solid rgba(31,35,64,0.15);
-  margin-top: 0.8rem;
+  margin-top: 0.3rem;
 }
 
 nav.site-nav a {
@@ -97,14 +97,14 @@ nav.site-nav a[aria-current="page"] {
 .hero {
   max-width: 860px;
   margin: 0 auto;
-  padding: 3rem 1.5rem 0;
+  padding: 2.3rem 1.5rem 0;
 }
 
 .eyebrow {
   display: inline-flex;
   gap: 0.6rem;
   align-items: center;
-  margin-bottom: 1.2rem;
+  margin-bottom: 0.5rem;
   font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -124,6 +124,9 @@ nav.site-nav a[aria-current="page"] {
   font-size: 2.6rem;
   margin: 0 0 0.6rem;
   color: var(--ink);
+  display: inline-block;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 0.2rem;
 }
 
 .hero .subtitle {
