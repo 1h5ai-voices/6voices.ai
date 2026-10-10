@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapitre V · L'IA derrière l'écran</title>
+<style>
+  :root {
+    --nuit: #16264a;
+    --nuit-doux: #3a4a6e;
+    --or: #b8892e;
+    --aube: #f3e6c8;
+    --fond: #f7f9fc;
+    --ligne: #d9dfea;
+    --entete: #23498c;
+  }
+  body {
+    margin: 0;
+    background: var(--fond);
+    color: var(--nuit);
+    font-family: Georgia, "Palatino Linotype", Palatino, serif;
+    font-size: 17px;
+    line-height: 1.65;
+  }
+  main { max-width: 46rem; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+  h2 {
+    font-size: 1.55rem; line-height: 1.3; font-weight: normal;
+    margin: 0 0 2rem; padding-bottom: 0.75rem; border-bottom: 2px solid var(--or);
+  }
+  h3 { font-size: 1.15rem; font-weight: bold; margin: 2.2rem 0 0.7rem; }
+  table {
+    width: 100%; border-collapse: collapse; margin: 0.4rem 0 1.8rem;
+    background: #fff; border: 1px solid var(--ligne);
+  }
+  caption {
+    caption-side: top; text-align: left; font-style: italic;
+    font-size: 1.1rem; color: var(--nuit-doux); padding: 0 0 0.5rem;
+  }
+  caption small { display: block; font-size: 0.85rem; margin-top: 0.2rem; }
+  th {
+    background: var(--entete); color: #fff; font-weight: normal;
+    text-align: left; padding: 0.65rem 0.9rem;
+  }
+  td { vertical-align: top; padding: 0.65rem 0.9rem; border-top: 1px solid var(--ligne); }
+  td:first-child { color: var(--nuit-doux); }
+  tbody tr:nth-child(even) td { background: #fbf8f0; }
+  .roles th:first-child { width: 34%; }
+  .facture { font-size: 0.95rem; }
+  .facture tr.total td { background: var(--aube); color: var(--nuit); }
+  p { margin: 0 0 1rem; }
+  .entree { margin-top: 0.5rem; font-style: italic; }
+  .final { margin-top: 2rem; }
+  @media (max-width: 520px) {
+    body { font-size: 16px; }
+    th, td { padding: 0.5rem 0.5rem; }
+    .facture { font-size: 0.82rem; }
+  }
+  .usd { color: var(--nuit-doux); font-size: 0.92em; }
+  @media print {
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    table, h3 { break-inside: avoid; page-break-inside: avoid; }
+    h3 { break-after: avoid; page-break-after: avoid; }
+    caption { break-after: avoid; }
+  }
+  nav.doc { margin-top: 3rem; padding-top: 1.2rem; border-top: 2px solid #b8892e;
+    display: flex; justify-content: space-between; gap: 0.8rem; flex-wrap: wrap;
+    font-family: Georgia, "Palatino Linotype", Palatino, serif; font-size: 0.95rem; }
+  nav.doc a { color: #23498c; text-decoration: none; }
+  nav.doc a:hover { text-decoration: underline; }
+  nav.doc .centre { text-align: center; flex: 1 1 100%; order: -1; margin-bottom: 0.4rem; }
+  @media print { nav.doc { display: none; } }
+</style>
+</head>
+<body>
+<main>
+
+<h2>V. Du modèle unique à l'organisation d'agents</h2>
+
+<table class="roles">
+  <caption>Comment fonctionne une organisation d'agents ?</caption>
+  <thead><tr><th>Rôle</th><th>Ce qu'il fait</th></tr></thead>
+  <tbody>
+    <tr><td>Le coordinateur</td><td>Il reçoit l'objectif, le découpe en sous-tâches, les répartit, puis assemble les résultats.</td></tr>
+    <tr><td>Le chercheur</td><td>Il rassemble les informations nécessaires.</td></tr>
+    <tr><td>L'analyste</td><td>Il compare, raisonne, interprète.</td></tr>
+    <tr><td>Le vérificateur</td><td>Il contrôle les dates, les sources, les chiffres.</td></tr>
+    <tr><td>Le rédacteur</td><td>Il transforme les résultats en réponse ou en document.</td></tr>
+    <tr><td>Combien d'agents ?</td><td>Selon Anthropic (2025) : une recherche simple, 1 agent ; une comparaison, 2&nbsp;à&nbsp;4 agents ; une recherche complexe, plus de 10 agents.</td></tr>
+  </tbody>
+</table>
+
+<table class="facture">
+  <caption>La même tâche, quelle facture et quel temps ?<small>(base : une heure de dialogue soutenu, chapitre II ; ordres de grandeur)</small></caption>
+  <thead><tr><th>Approche</th><th>Texte traité</th><th>Coût</th><th>Temps</th></tr></thead>
+  <tbody>
+    <tr><td>Conversation simple</td><td>1 fois</td><td>0,21&nbsp;€&nbsp;à&nbsp;0,68&nbsp;€<br><span class="usd">(0,24&nbsp;$&nbsp;à&nbsp;0,78&nbsp;$)</span></td><td>Court.</td></tr>
+    <tr><td>Un agent</td><td>Environ 4 fois</td><td>0,84&nbsp;€&nbsp;à&nbsp;2,72&nbsp;€<br><span class="usd">(0,96&nbsp;$&nbsp;à&nbsp;3,12&nbsp;$)</span></td><td>Plus long, séquentiel, les étapes s'enchaînent une à une.</td></tr>
+    <tr><td>Organisation multi-agents</td><td>Environ 15 fois</td><td>3,15&nbsp;€&nbsp;à&nbsp;10,20&nbsp;€<br><span class="usd">(3,61&nbsp;$&nbsp;à&nbsp;11,69&nbsp;$)</span></td><td>Raccourci, jusqu'à 90&nbsp;% de gain sur certaines recherches complexes grâce au travail en parallèle (Anthropic 2025).</td></tr>
+    <tr class="total"><td>1 million de tâches menées par une organisation multi-agents</td><td colspan="3">3,15&nbsp;à&nbsp;10,2 millions d'euros (3,6&nbsp;à&nbsp;11,7 millions de dollars).</td></tr>
+  </tbody>
+</table>
+
+<p class="entree">Le chapitre IV l'a montré : une seule voix s'essouffle face à une tâche longue. D'où l'idée de répartir le travail.</p>
+
+<h3>V.1 Plusieurs agents, plusieurs rôles, une coordination</h3>
+<p>Un agent coordinateur reçoit l'objectif, le découpe et confie chaque part à un agent spécialisé : l'un cherche, un autre analyse, un autre vérifie, un autre rédige. C'est souvent le même modèle, copié plusieurs fois avec un rôle différent pour chaque copie, parfois des modèles différents. Le coordinateur rassemble ensuite leurs résultats. C'est l'organisation d'une petite équipe, appliquée à des machines.</p>
+
+<h3>V.2 L'utilisateur ne parle plus à une IA, mais à une organisation d'IA</h3>
+<p>À l'écran, rien ne change : une demande, une réponse. Derrière, plusieurs agents ont travaillé, échangé leurs résultats et se sont coordonnés. L'utilisateur ne voit ni le découpage, ni les échanges, ni les étapes abandonnées en chemin.</p>
+
+<h3>V.3 Une seule IA ou une organisation d'IA : la même tâche, deux factures (tableau € / $ et temps)</h3>
+<p>Chaque agent relit sa part, et le coordinateur relit le travail de tous. Selon Anthropic (2025), un système multi-agents traite environ 15 fois plus de texte qu'une conversation simple. Sur ses tests internes de recherche, Anthropic rapporte une amélioration pouvant atteindre 90&nbsp;% par rapport à un seul agent, obtenue plus vite. Temps contre jetons, rapidité contre facture.</p>
+
+<h3>V.4 Combien coûte le multi-agents, et qui paiera : rentabilité pour le fournisseur, prix pour l'utilisateur</h3>
+<p>À un million de tâches, la facture se compte en millions d'euros. Pour le fournisseur, le multi-agents n'est rentable que si la tâche a assez de valeur pour justifier ce surcoût : il peut donc le réserver aux usages exigeants et aux offres payantes. Pour l'utilisateur gratuit, une question se pose : jusqu'à quand quinze fois plus de calcul pourra-t-il rester gratuit ?</p>
+
+<p class="final">Le multi-agents n'est pas une économie : c'est une dépense supplémentaire, qui se justifie quand la tâche en vaut la peine. Reste à savoir qui bénéficiera réellement de cette productivité.</p>
+
+
+<nav class="doc">
+  <a class="centre" href="index.html">Retour au synoptique du document</a>
+  <a href="chapitre-IV.html">&larr; Chapitre IV</a>
+  <a href="chapitre-VI.html">Chapitre VI &rarr;</a>
+</nav>
+</main>
+</body>
+</html>

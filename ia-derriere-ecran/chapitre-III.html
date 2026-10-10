@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapitre III · L'IA derrière l'écran</title>
+<style>
+  :root {
+    --nuit: #16264a;
+    --nuit-doux: #3a4a6e;
+    --or: #b8892e;
+    --aube: #f3e6c8;
+    --fond: #f7f9fc;
+    --ligne: #d9dfea;
+    --entete: #23498c;
+  }
+  body {
+    margin: 0;
+    background: var(--fond);
+    color: var(--nuit);
+    font-family: Georgia, "Palatino Linotype", Palatino, serif;
+    font-size: 17px;
+    line-height: 1.65;
+  }
+  main { max-width: 44rem; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+  h2 {
+    font-size: 1.55rem; line-height: 1.3; font-weight: normal;
+    margin: 0 0 2rem; padding-bottom: 0.75rem; border-bottom: 2px solid var(--or);
+  }
+  h3 { font-size: 1.15rem; font-weight: bold; margin: 2.2rem 0 0.7rem; }
+  table {
+    width: 100%; border-collapse: collapse; margin: 0.4rem 0 1.8rem;
+    background: #fff; border: 1px solid var(--ligne);
+  }
+  caption {
+    caption-side: top; text-align: left; font-style: italic;
+    font-size: 1.1rem; color: var(--nuit-doux); padding: 0 0 0.5rem;
+  }
+  th {
+    background: var(--entete); color: #fff; font-weight: normal;
+    text-align: left; padding: 0.65rem 0.9rem;
+  }
+  th:first-child { width: 34%; }
+  td { vertical-align: top; padding: 0.65rem 0.9rem; border-top: 1px solid var(--ligne); }
+  td:first-child { color: var(--nuit-doux); }
+  tbody tr:nth-child(even) td { background: #fbf8f0; }
+  p { margin: 0 0 1rem; }
+  .ouverture { margin-top: 2rem; font-style: italic; color: var(--or); font-size: 1.1rem; }
+  @media (max-width: 480px) {
+    body { font-size: 16px; }
+    th, td { padding: 0.55rem 0.6rem; }
+  }
+  .usd { color: var(--nuit-doux); font-size: 0.92em; }
+  @media print {
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    table, h3 { break-inside: avoid; page-break-inside: avoid; }
+    h3 { break-after: avoid; page-break-after: avoid; }
+    caption { break-after: avoid; }
+  }
+  nav.doc { margin-top: 3rem; padding-top: 1.2rem; border-top: 2px solid #b8892e;
+    display: flex; justify-content: space-between; gap: 0.8rem; flex-wrap: wrap;
+    font-family: Georgia, "Palatino Linotype", Palatino, serif; font-size: 0.95rem; }
+  nav.doc a { color: #23498c; text-decoration: none; }
+  nav.doc a:hover { text-decoration: underline; }
+  nav.doc .centre { text-align: center; flex: 1 1 100%; order: -1; margin-bottom: 0.4rem; }
+  @media print { nav.doc { display: none; } }
+</style>
+</head>
+<body>
+<main>
+
+<h2>III. Les limites d'aujourd'hui de l'IA</h2>
+
+<table>
+  <caption>Où l'architecture actuelle atteint-elle ses limites ?</caption>
+  <thead><tr><th>Limite</th><th>Ce qu'il faut savoir</th></tr></thead>
+  <tbody>
+    <tr><td>Le modèle</td><td>Un seul modèle doit tout faire : comprendre, garder le fil, raisonner, répondre. Ses capacités restent limitées aux heures de pointe.</td></tr>
+    <tr><td>Le contexte</td><td>Pour chaque réponse, il relit la conversation (chapitre II). Comme s'il fallait relire tout le livre pour y ajouter une phrase.</td></tr>
+    <tr><td>Les ressources</td><td>Processeurs spécialisés, électricité, eau de refroidissement : rien n'est illimité.</td></tr>
+    <tr><td>L'accès gratuit</td><td>Quand la facture monte, il se réduit : quotas plus serrés, modèles plus légers, fonctions réservées.</td></tr>
+    <tr><td>Le système</td><td>Un modèle puissant ne suffit plus ; la puissance devient celle du système qui l'entoure.</td></tr>
+  </tbody>
+</table>
+
+<table>
+  <caption>Que devient la relecture à grande échelle ?</caption>
+  <thead><tr><th>Volume</th><th>Pages relues</th></tr></thead>
+  <tbody>
+    <tr><td>1&nbsp;000 heures de dialogue</td><td>120&nbsp;000&nbsp;à&nbsp;700&nbsp;000 pages relues.</td></tr>
+    <tr><td>1 million d'heures de dialogue</td><td>120&nbsp;à&nbsp;700 millions de pages relues.</td></tr>
+  </tbody>
+</table>
+
+<h3>III.1 Les limites architecturales du modèle uni-agent actuel : pourquoi ça craque à grande échelle</h3>
+<p>Aujourd'hui, la plupart des IA grand public reposent sur un modèle unique qui doit tout gérer : comprendre la question, garder le fil, raisonner et répondre. Pour un usage individuel, cela fonctionne bien. Mais quand des millions de personnes se connectent en même temps, les machines disponibles ne suffisent plus : l'attente s'allonge, les réponses ralentissent, les limites apparaissent. Même en payant, les capacités restent limitées aux heures de pointe.</p>
+
+<h3>III.2 La relecture intégrale du contexte : pourquoi le coût augmente à chaque tour</h3>
+<p>Le chapitre II l'a montré : pour répondre, le modèle relit la conversation. Chaque échange coûte un peu plus que le précédent, et l'ensemble grandit plus vite que la conversation. À l'échelle d'un million d'heures de dialogue, ce sont des centaines de millions de pages relues.</p>
+
+<h3>III.3 Calcul, énergie, disponibilité</h3>
+<p>Chaque réponse mobilise des processeurs spécialisés, rares et coûteux. Selon l'estimation publiée par Google en août 2025, une requête texte médiane consomme environ 0,24 Wh, l'équivalent de moins de neuf secondes de télévision, et environ cinq gouttes d'eau pour le refroidissement, hors entraînement des modèles. C'est peu pour une réponse. Multiplié par des milliards de requêtes, cela impose de construire des centres de calcul de la taille d'usines.</p>
+
+<h3>III.4 Pourquoi le gratuit se réduit</h3>
+<p>Le gratuit n'élimine pas le coût du calcul. Quand la demande augmente, les fournisseurs arbitrent : quotas plus serrés, modèles plus légers, fonctions réservées aux abonnés. Exemple récent : chez Google, à partir du 9 octobre 2026, les utilisateurs gratuits n'ont plus accès qu'au modèle le plus léger de Gemini.</p>
+
+<h3>III.5 De la puissance d'un modèle à la puissance d'un système</h3>
+<p>Un modèle puissant ne suffit plus face aux tâches longues et complexes. La puissance devient celle du système qui l'entoure, avec plus de capacités, mais aussi plus de complexité.</p>
+
+<p class="ouverture">Que se passe-t-il lorsque l'IA ne doit plus seulement répondre à une question, mais accomplir une tâche ?</p>
+
+
+<nav class="doc">
+  <a class="centre" href="index.html">Retour au synoptique du document</a>
+  <a href="chapitre-II.html">&larr; Chapitre II</a>
+  <a href="chapitre-IV.html">Chapitre IV &rarr;</a>
+</nav>
+</main>
+</body>
+</html>

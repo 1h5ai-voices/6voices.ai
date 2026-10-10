@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapitre II · L'IA derrière l'écran</title>
+<style>
+  :root {
+    --nuit: #16264a;
+    --nuit-doux: #3a4a6e;
+    --or: #b8892e;
+    --aube: #f3e6c8;
+    --fond: #f7f9fc;
+    --ligne: #d9dfea;
+    --entete: #23498c;
+  }
+  body {
+    margin: 0;
+    background: var(--fond);
+    color: var(--nuit);
+    font-family: Georgia, "Palatino Linotype", Palatino, serif;
+    font-size: 17px;
+    line-height: 1.65;
+  }
+  main { max-width: 44rem; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+  h2 {
+    font-size: 1.55rem; line-height: 1.3; font-weight: normal;
+    margin: 0 0 2rem; padding-bottom: 0.75rem; border-bottom: 2px solid var(--or);
+  }
+  h3 { font-size: 1.15rem; font-weight: bold; margin: 2.2rem 0 0.7rem; }
+  table {
+    width: 100%; border-collapse: collapse; margin: 0.4rem 0 1.4rem;
+    background: #fff; border: 1px solid var(--ligne);
+  }
+  caption {
+    caption-side: top; text-align: left; font-style: italic;
+    font-size: 1.05rem; color: var(--nuit-doux); padding: 0 0 0.5rem;
+  }
+  th {
+    background: var(--entete); color: #fff; font-weight: normal;
+    text-align: left; padding: 0.65rem 0.9rem;
+  }
+  td { vertical-align: top; padding: 0.65rem 0.9rem; border-top: 1px solid var(--ligne); }
+  td:first-child { color: var(--nuit-doux); }
+  tbody tr:nth-child(even) td { background: #fbf8f0; }
+  p { margin: 0 0 1rem; }
+  .final { margin-top: 2.2rem; }
+  .ouverture { margin-top: 1.5rem; font-style: italic; color: var(--or); font-size: 1.15rem; }
+  @media (max-width: 480px) {
+    body { font-size: 16px; }
+    th, td { padding: 0.55rem 0.6rem; }
+  }
+  .usd { color: var(--nuit-doux); font-size: 0.92em; }
+  @media print {
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    table, h3 { break-inside: avoid; page-break-inside: avoid; }
+    h3 { break-after: avoid; page-break-after: avoid; }
+    caption { break-after: avoid; }
+  }
+  nav.doc { margin-top: 3rem; padding-top: 1.2rem; border-top: 2px solid #b8892e;
+    display: flex; justify-content: space-between; gap: 0.8rem; flex-wrap: wrap;
+    font-family: Georgia, "Palatino Linotype", Palatino, serif; font-size: 0.95rem; }
+  nav.doc a { color: #23498c; text-decoration: none; }
+  nav.doc a:hover { text-decoration: underline; }
+  nav.doc .centre { text-align: center; flex: 1 1 100%; order: -1; margin-bottom: 0.4rem; }
+  @media print { nav.doc { display: none; } }
+</style>
+</head>
+<body>
+<main>
+
+<h2>II. Ce que le lecteur ne voit pas : la facture réelle</h2>
+
+<h3>II.1 Pourquoi mesurer en pages ?</h3>
+<p>Le nombre de questions posées en une heure dépend du rythme de chacun, pas de la machine. La page d'un livre est une unité que tout le monde connaît. Elle permet de comparer d'un regard ce que l'humain écrit, ce que l'IA lui répond, et ce qu'elle doit relire pour répondre.</p>
+
+<h3>II.2 Pourquoi 300 mots par page ?</h3>
+<p>Une page de livre courant compte entre 250 et 400 mots selon le format. Nous retenons 300 mots, une moyenne proche de la réalité et facile à manier.</p>
+<table>
+  <thead><tr><th>Pages</th><th>Mots</th></tr></thead>
+  <tbody>
+    <tr><td>10 pages</td><td>3&nbsp;000 mots</td></tr>
+    <tr><td>100 pages</td><td>30&nbsp;000 mots</td></tr>
+    <tr><td>1&nbsp;000 pages</td><td>300&nbsp;000 mots</td></tr>
+  </tbody>
+</table>
+
+<h3>II.3 Trois rythmes humains</h3>
+<table>
+  <caption>En une heure de dialogue, l'humain écrit environ :</caption>
+  <thead><tr><th>Profil</th><th>Pages écrites</th></tr></thead>
+  <tbody>
+    <tr><td>Étudiant</td><td>3&nbsp;à&nbsp;5 pages</td></tr>
+    <tr><td>Adulte</td><td>1,5&nbsp;à&nbsp;3 pages</td></tr>
+    <tr><td>Personne âgée</td><td>0,5&nbsp;à&nbsp;1,5 page</td></tr>
+  </tbody>
+</table>
+<p>Ce sont des ordres de grandeur, qui varient selon l'aisance à écrire et le temps de réflexion.</p>
+
+<h3>II.4 Ce que l'IA produit en face</h3>
+<p>Quel que soit le rythme humain, l'IA répond en quelques secondes, et par beaucoup plus de texte.</p>
+<p>Usage léger (surtout l'adulte et la personne âgée) : l'humain écrit environ 2 pages, l'IA en écrit environ 10.</p>
+<p>Usage soutenu (surtout l'étudiant) : l'humain écrit environ 5 pages, l'IA en écrit environ 30.</p>
+
+<h3>II.5 Ce que le modèle doit traiter au fil du dialogue</h3>
+<p>L'IA n'a pas de mémoire au sens humain. Elle doit relire l'historique à chaque fois, avec des techniques pour alléger.</p>
+<table>
+  <thead><tr><th>Usage</th><th>Pages relues en une heure</th></tr></thead>
+  <tbody>
+    <tr><td>Usage léger</td><td>environ 120 pages, un petit livre</td></tr>
+    <tr><td>Usage soutenu</td><td>environ 700 pages, deux ou trois romans</td></tr>
+  </tbody>
+</table>
+<p>Ces chiffres sont des ordres de grandeur ; ils ne décrivent pas le fonctionnement identique de tous les modèles.</p>
+
+<h3>II.6 Quel ordre de grandeur de coût ?</h3>
+<table>
+  <caption>Coût de calcul pour une heure, au tarif public d'un modèle de gamme moyenne :</caption>
+  <thead><tr><th>Usage</th><th>Coût pour une heure</th></tr></thead>
+  <tbody>
+    <tr><td>Usage léger</td><td>0,06&nbsp;€&nbsp;à&nbsp;0,13&nbsp;€<br><span class="usd">(0,07&nbsp;$&nbsp;à&nbsp;0,15&nbsp;$)</span></td></tr>
+    <tr><td>Usage soutenu</td><td>0,21&nbsp;€&nbsp;à&nbsp;0,68&nbsp;€<br><span class="usd">(0,24&nbsp;$&nbsp;à&nbsp;0,78&nbsp;$)</span></td></tr>
+  </tbody>
+</table>
+<table>
+  <caption>Dans la vie quotidienne :</caption>
+  <thead><tr><th>Repère</th><th>Paie environ</th></tr></thead>
+  <tbody>
+    <tr><td>Un ticket de bus à Nice (1,70&nbsp;€)</td><td>2&nbsp;à&nbsp;8 heures de dialogue soutenu</td></tr>
+    <tr><td>Un café au comptoir (1,80&nbsp;€)</td><td>2,5&nbsp;à&nbsp;8,5 heures</td></tr>
+    <tr><td>Une baguette (1,10&nbsp;€)</td><td>1,5&nbsp;à&nbsp;5 heures</td></tr>
+  </tbody>
+</table>
+<p>Une heure par jour pendant un mois coûte entre 6&nbsp;€ et 20&nbsp;€, à peu près le prix d'un abonnement.</p>
+
+<h3>II.7 Que devient ce coût à grande échelle ?</h3>
+<table>
+  <thead><tr><th>Volume</th><th>Usage léger</th><th>Usage soutenu</th></tr></thead>
+  <tbody>
+    <tr><td>1&nbsp;000 heures de dialogue</td><td>60&nbsp;€&nbsp;à&nbsp;130&nbsp;€<br><span class="usd">(70&nbsp;$&nbsp;à&nbsp;150&nbsp;$)</span></td><td>210&nbsp;€&nbsp;à&nbsp;680&nbsp;€<br><span class="usd">(240&nbsp;$&nbsp;à&nbsp;780&nbsp;$)</span></td></tr>
+    <tr><td>1 million d'heures de dialogue</td><td>60&nbsp;000&nbsp;€&nbsp;à&nbsp;130&nbsp;000&nbsp;€<br><span class="usd">(70&nbsp;000&nbsp;$&nbsp;à&nbsp;150&nbsp;000&nbsp;$)</span></td><td>210&nbsp;000&nbsp;€&nbsp;à&nbsp;680&nbsp;000&nbsp;€<br><span class="usd">(240&nbsp;000&nbsp;$&nbsp;à&nbsp;780&nbsp;000&nbsp;$)</span></td></tr>
+  </tbody>
+</table>
+<p>Ces montants ne concernent que le calcul. Les centres de données, l'énergie, le personnel et la recherche s'y ajoutent, mais aucune entreprise ne les publie : ces chiffres sont un plancher, pas un total.</p>
+
+<h3>II.8 Qui paie lorsque l'utilisateur ne paie pas ?</h3>
+<p>Les abonnés, dont le forfait couvre leur usage et une partie de celui des autres.</p>
+<p>Les investisseurs, qui financent les pertes en attendant la rentabilité.</p>
+<p>Chez certains fournisseurs, d'autres activités, comme la publicité.</p>
+<p>Et l'utilisateur gratuit lui-même, autrement qu'en euros : modèles plus légers, quotas plus serrés, fonctions réservées.</p>
+
+<p class="final">Gratuit pour l'utilisateur ne signifie jamais sans coût pour celui qui fournit le calcul. Le coût est invisible au clic, mais réel à l'échelle.</p>
+
+<p class="ouverture">Le goulot, c'est l'humain, pas l'IA.</p>
+
+
+<nav class="doc">
+  <a class="centre" href="index.html">Retour au synoptique du document</a>
+  <a href="chapitre-I.html">&larr; Chapitre I</a>
+  <a href="chapitre-III.html">Chapitre III &rarr;</a>
+</nav>
+</main>
+</body>
+</html>
