@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapitre IV · L'IA derrière l'écran</title>
+<style>
+  :root {
+    --nuit: #16264a;
+    --nuit-doux: #3a4a6e;
+    --or: #b8892e;
+    --aube: #f3e6c8;
+    --fond: #f7f9fc;
+    --ligne: #d9dfea;
+    --entete: #23498c;
+  }
+  body {
+    margin: 0;
+    background: var(--fond);
+    color: var(--nuit);
+    font-family: Georgia, "Palatino Linotype", Palatino, serif;
+    font-size: 17px;
+    line-height: 1.65;
+  }
+  main { max-width: 44rem; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+  h2 {
+    font-size: 1.55rem; line-height: 1.3; font-weight: normal;
+    margin: 0 0 2rem; padding-bottom: 0.75rem; border-bottom: 2px solid var(--or);
+  }
+  h3 { font-size: 1.15rem; font-weight: bold; margin: 2.2rem 0 0.7rem; }
+  table {
+    width: 100%; border-collapse: collapse; margin: 0.4rem 0 1.8rem;
+    background: #fff; border: 1px solid var(--ligne);
+  }
+  caption {
+    caption-side: top; text-align: left; font-style: italic;
+    font-size: 1.1rem; color: var(--nuit-doux); padding: 0 0 0.5rem;
+  }
+  th {
+    background: var(--entete); color: #fff; font-weight: normal;
+    text-align: left; padding: 0.65rem 0.9rem;
+  }
+  th:first-child { width: 34%; }
+  td { vertical-align: top; padding: 0.65rem 0.9rem; border-top: 1px solid var(--ligne); }
+  td:first-child { color: var(--nuit-doux); }
+  tbody tr:nth-child(even) td { background: #fbf8f0; }
+  p { margin: 0 0 1rem; }
+  .entree { margin-top: 0.5rem; font-style: italic; }
+  @media (max-width: 480px) {
+    body { font-size: 16px; }
+    th, td { padding: 0.55rem 0.6rem; }
+  }
+  .usd { color: var(--nuit-doux); font-size: 0.92em; }
+  @media print {
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    table, h3 { break-inside: avoid; page-break-inside: avoid; }
+    h3 { break-after: avoid; page-break-after: avoid; }
+    caption { break-after: avoid; }
+  }
+  nav.doc { margin-top: 3rem; padding-top: 1.2rem; border-top: 2px solid #b8892e;
+    display: flex; justify-content: space-between; gap: 0.8rem; flex-wrap: wrap;
+    font-family: Georgia, "Palatino Linotype", Palatino, serif; font-size: 0.95rem; }
+  nav.doc a { color: #23498c; text-decoration: none; }
+  nav.doc a:hover { text-decoration: underline; }
+  nav.doc .centre { text-align: center; flex: 1 1 100%; order: -1; margin-bottom: 0.4rem; }
+  @media print { nav.doc { display: none; } }
+</style>
+</head>
+<body>
+<main>
+
+<h2>IV. De la question à la tâche : une seule voix peut-elle tout faire ?</h2>
+
+<table>
+  <caption>Quelle différence entre poser une question et confier une tâche ?</caption>
+  <thead><tr><th>Point</th><th>Réponse</th></tr></thead>
+  <tbody>
+    <tr><td>Une question</td><td>« Quel temps fera-t-il demain à Nice ? » Un tour : l'IA lit, calcule, répond.</td></tr>
+    <tr><td>Une tâche</td><td>« Chaque lundi, compare les prix de l'électricité, vérifie les sources, et prépare-moi un résumé. » Des dizaines de tours : chercher, lire, comparer, vérifier, rédiger.</td></tr>
+    <tr><td>En résumé</td><td>1 question = 1 tour ; 1 tâche = N tours.</td></tr>
+    <tr><td>Qui décide des étapes ?</td><td>Pour une question, l'humain. Pour une tâche, l'IA elle-même, dans le cadre fixé par l'humain.</td></tr>
+    <tr><td>Combien de texte traité ?</td><td>Selon Anthropic (2025), une tâche confiée à un agent consomme environ 4 fois plus de texte traité qu'une conversation simple.</td></tr>
+  </tbody>
+</table>
+
+<table>
+  <caption>Comment un agent accomplit-il une tâche ?</caption>
+  <thead><tr><th>Étape</th><th>Ce qui se passe</th></tr></thead>
+  <tbody>
+    <tr><td>1. Objectif</td><td>L'humain fixe le but et décrit ce qu'est un bon résultat.</td></tr>
+    <tr><td>2. Outil</td><td>L'agent choisit un moyen d'agir : rechercher sur le web, ouvrir un fichier, calculer.</td></tr>
+    <tr><td>3. Observation</td><td>Il regarde ce que l'outil lui a rapporté.</td></tr>
+    <tr><td>4. Décision</td><td>Il choisit l'étape suivante.</td></tr>
+    <tr><td>5. Vérification</td><td>Il contrôle si le résultat correspond à l'objectif.</td></tr>
+    <tr><td>6. Terminé, ou nouveau tour</td><td>Si le résultat convient, il s'arrête. Sinon, il recommence la boucle.</td></tr>
+  </tbody>
+</table>
+
+<p class="entree">Jusqu'ici, l'IA répondait. Elle commence maintenant à agir.</p>
+
+<h3>IV.1 La boucle de l'agent : objectif, outil, observation, décision, vérification, terminé</h3>
+<p>Un agent n'est pas une IA différente : c'est le même modèle, placé dans une boucle. Au lieu de donner une réponse et de s'arrêter, il agit, regarde le résultat, décide de la suite, vérifie, et recommence jusqu'à ce que le but soit atteint. On rencontre souvent cette boucle sous sa forme anglaise : GOAL, TOOL, OBSERVE, DECIDE, CHECK, DONE.</p>
+
+<h3>IV.2 Une question demande un tour, une tâche en demande des dizaines</h3>
+<p>Chaque tour de boucle est un nouvel appel au modèle, qui doit relire ce qui précède : la consigne, les étapes déjà faites, les résultats obtenus, avec des techniques pour alléger. Une tâche coûte donc bien plus qu'une question, et le mécanisme du chapitre II se répète à chaque étape.</p>
+<p>La vérification a aussi ses limites : un agent peut se tromper en vérifiant, et déclarer réussie une tâche qui ne l'est pas. La relecture humaine reste nécessaire.</p>
+<p>Une seule voix peut porter une tâche simple. Pour une tâche longue et complexe, elle s'essouffle : trop d'étapes, trop de texte à relire, trop de risques d'erreur. D'où l'idée de répartir le travail entre plusieurs agents.</p>
+
+
+<nav class="doc">
+  <a class="centre" href="index.html">Retour au synoptique du document</a>
+  <a href="chapitre-III.html">&larr; Chapitre III</a>
+  <a href="chapitre-V.html">Chapitre V &rarr;</a>
+</nav>
+</main>
+</body>
+</html>
