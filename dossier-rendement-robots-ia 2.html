@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6Voices : Rendement robots et IA</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  /* Add-ons spécifiques à ce dossier, n'affecte pas style.css partagé */
+  .back-link {
+    display: inline-block;
+    margin-bottom: 1.2rem;
+    font-weight: 700;
+  }
+  .doc-list {
+    padding-left: 1.4rem;
+    line-height: 1.7;
+  }
+  .doc-list li { margin-bottom: 0.3rem; }
+  .doc-list .current { font-weight: 700; }
+  .fiche {
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--accent);
+    border-radius: 12px;
+    padding: 0.9rem 1.1rem;
+    margin-bottom: 1rem;
+  }
+  .fiche h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.05rem;
+  }
+  .fiche p { margin: 0.3rem 0; }
+  .fiche .cond {
+    color: var(--muted);
+    font-style: italic;
+  }
+  .formule {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 0.9rem 1.1rem;
+    font-weight: 700;
+    text-align: center;
+    margin: 1rem 0;
+  }
+  .phrase-finale {
+    font-size: 1.15rem;
+    font-weight: 700;
+    text-align: center;
+    margin: 1.5rem 0 0.5rem 0;
+  }
+  .note {
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+</style>
+</head>
+<body>
+
+<div class="top-band">
+  <header class="site-header">
+    <a class="logo" href="index.html">6Voices</a>
+    <div class="lang-toggle">
+      <button type="button" data-lang="fr">FR</button>
+      <button type="button" data-lang="en">EN</button>
+    </div>
+  </header>
+
+  <nav class="site-nav">
+    <a href="index.html" data-fr="Accueil" data-en="Home">Accueil</a>
+    <a href="auteurs.html" data-fr="Auteurs" data-en="Authors">Auteurs</a>
+    <a href="projet-6v.html" data-fr="Projet 6V" data-en="6V Project">Projet 6V</a>
+    <a href="methode.html" data-fr="Méthode" data-en="Method">Méthode</a>
+    <a href="documents.html" data-fr="Documents" data-en="Documents">Documents</a>
+    <a href="architecture-log.html" data-fr="Architecture Log" data-en="Architecture Log">Architecture Log</a>
+    <a href="ressources.html" data-fr="Ressources" data-en="Resources">Ressources</a>
+    <a href="dossiers.html" aria-current="page" data-fr="Dossiers" data-en="Dossiers">Dossiers</a>
+  </nav>
+
+  <div class="hero">
+    <div class="eyebrow"><span class="num">N°1</span> <span data-fr="Dossiers 2026" data-en="Dossiers 2026">Dossiers 2026</span></div>
+    <h1 data-fr="Exemples concrets de rendement grâce aux robots et à l'IA" data-en="Concrete Examples of Productivity Gains from Robots and AI">Exemples concrets de rendement grâce aux robots et à l'IA</h1>
+    <p class="subtitle" data-fr="Industrie, logistique, agriculture, agroalimentaire. Date de publication&nbsp;: 12.10.2026" data-en="Industry, logistics, agriculture, agri-food. Publication date: 12.10.2026">Industrie, logistique, agriculture, agroalimentaire. Date de publication&nbsp;: 12.10.2026</p>
+  </div>
+</div>
+
+<main>
+
+  <!-- ===================== FRANÇAIS ===================== -->
+  <div class="lang-content" data-lang="fr">
+
+    <a class="back-link" href="dossiers.html">Retour aux Dossiers</a>
+
+    <section class="block">
+      <h2>Introduction</h2>
+      <p>Les cinq documents publiés sur le site 6voices.ai dessinent un même chemin&nbsp;: de la pensée et de la réflexion vers la réalité de la complémentarité entre l'humain et l'IA.</p>
+      <ol class="doc-list">
+        <li class="current">Exemples concrets de rendement grâce aux robots et à l'IA (présent document, 12.10.2026)</li>
+        <li><a href="ia-derriere-ecran/index.html">L'IA derrière l'écran&nbsp;: d'une voix à une organisation</a> (10.10.2026)</li>
+        <li><a href="dossier-humain-facea-ia.html">L'humain face à l'intelligence artificielle</a> (25.09.2026)</li>
+        <li><a href="dossier-architectures.html">Architectures&nbsp;: Cerveau Humain vs Modèle IA</a> (22.08.2026)</li>
+        <li><a href="dossier-ia-cyber.html">IA et cyber</a> (31.07.2026)</li>
+      </ol>
+      <p>Les quatre premiers documents publiés ont posé les questions de fond&nbsp;: la sécurité, le fonctionnement comparé du cerveau et de la machine, la place de l'humain face à l'IA, puis ce qui se cache derrière l'écran.</p>
+      <p>Le présent document franchit une étape&nbsp;: il quitte le terrain des idées pour celui des faits, et observe comment, dans l'industrie, la logistique, l'agriculture et l'agroalimentaire, l'humain et la machine travaillent déjà ensemble.</p>
+    </section>
+
+    <section class="block">
+      <h2>Préambule</h2>
+      <p>Le point de départ de cette réflexion est concret&nbsp;: l'expérimentation présentée en 2026 de robots humanoïdes dans un supermarché Føtex au Danemark pour le réapprovisionnement nocturne des rayons.</p>
+      <p>Ce choix de domaines répond à un objectif précis&nbsp;: mesurer les gains économiques de manière concrète.</p>
+      <p>Industrie, logistique, agriculture et agroalimentaire sont les secteurs où le rendement se chiffre le plus clairement (volumes, tâches répétitives, pénibilité, manque de main-d'œuvre) et se transmet directement au PIB par la production et l'export.</p>
+      <p>Ce périmètre ne prétend pas résumer toutes les contributions possibles de l'IA à la société.</p>
+      <p>Les domaines exclus (militaire, santé, éducation, écologie) soulèvent des questions humaines et éthiques qui dépassent le seul rendement et mériteraient un traitement propre.</p>
+    </section>
+
+    <section class="block">
+      <h2>I. Dix exemples convergents</h2>
+
+      <div class="fiche">
+        <h3>1. Logistique d'entrepôt&nbsp;: Amazon (États-Unis)</h3>
+        <p>Plus d'un million de robots.</p>
+        <p>Selon Amazon, le système Sequoia permet d'identifier et de ranger les marchandises reçues jusqu'à 75&nbsp;% plus rapidement et de réduire jusqu'à 25&nbsp;% le temps de traitement d'une commande.</p>
+        <p class="cond">Condition de réussite&nbsp;: volumes élevés et coordination des flux à très grande échelle.</p>
+      </div>
+
+      <div class="fiche">
+        <h3>2. Ports automatisés&nbsp;: Rotterdam (Pays-Bas), Yangshan et Qingdao (Chine)</h3>
+        <p>Grues et véhicules autonomes fonctionnant 24&nbsp;h/24.</p>
+        <p>Réduction du temps d'immobilisation des navires et accélération des flux.</p>
+        <p class="cond">Condition de réussite&nbsp;: investissements lourds et volumes importants.</p>
+      </div>
+
+      <div class="fiche">
+        <h3>3. Usines sans lumière et automobile&nbsp;: Japon, Corée, Allemagne, Chine</h3>
+        <p>Lignes de soudure, peinture et assemblage quasi entièrement robotisées.</p>
+        <p>Production continue, précision constante, forte réduction des tâches pénibles.</p>
+        <p class="cond">Condition de réussite&nbsp;: standardisation et volumes importants.</p>
+      </div>
+
+      <div class="fiche">
+        <h3>4. Maintenance prédictive&nbsp;: Siemens et industriels européens</h3>
+        <p>Capteurs et IA anticipent les pannes.</p>
+        <p>Réduction significative des arrêts non planifiés et allongement de la durée de vie des équipements.</p>
+        <p class="cond">Condition de réussite&nbsp;: qualité des données et des capteurs.</p>
+      </div>
+
+      <div class="fiche">
+        <h3>5. Tri optique agroalimentaire&nbsp;: Tomra (Norvège) et équivalents</h3>
+        <p>Tri à grande vitesse de fruits, légumes et céréales.</p>
+        <p>Réduction des pertes et qualité plus homogène.</p>
+        <p class="cond">Condition de réussite&nbsp;: volumes élevés et produits relativement standardisables.</p>
+      </div>
+
+      <div class="fiche">
+        <h3>6. Découpe de viande&nbsp;: Danish Crown (Danemark)</h3>
+        <p>Vision artificielle et robot.</p>
+        <p>Meilleur rendement matière et fin des gestes répétitifs source de troubles musculo-squelettiques.</p>
+        <p class="cond">Condition de réussite&nbsp;: environnement contrôlé et hygiène stricte.</p>
+      </div>
+
+      <div class="fiche">
+        <h3>7. Robots de traite&nbsp;: Lely (Pays-Bas, Danemark, Suède)</h3>
+        <p>La vache vient se faire traire selon son rythme.</p>
+        <p>Libération des horaires contraignants pour l'éleveur et suivi individuel des animaux.</p>
+        <p class="cond">Condition de réussite&nbsp;: taille d'exploitation suffisante et suivi des données.</p>
+      </div>
+
+      <div class="fiche">
+        <h3>8. Entrepôts robotisés&nbsp;: Exotec (France) et Ocado (Royaume-Uni)</h3>
+        <p>Systèmes de robots mobiles en hauteur (Exotec) ou en grille (Ocado).</p>
+        <p>Selon Exotec, le système installé chez Carrefour permet de traiter plus de 4&nbsp;000 commandes quotidiennes avec une densité de stockage multipliée par quatre.</p>
+        <p class="cond">Condition de réussite&nbsp;: volumes standardisés et système de gestion intégré adaptés à des entrepôts de taille intermédiaire.</p>
+      </div>
+
+      <div class="fiche">
+        <h3>9.1 Agriculture de précision&nbsp;: John Deere et Carbon Robotics (États-Unis et Europe)</h3>
+        <p>Pulvérisation ciblée et désherbage laser.</p>
+        <p>Selon John Deere, la technologie See &amp; Spray a permis une économie moyenne de 59&nbsp;% sur les volumes d'herbicides en 2024.</p>
+        <p>Le désherbage laser réduit le recours au travail manuel et aux produits chimiques.</p>
+        <p class="cond">Condition de réussite&nbsp;: adaptation au type de culture, au terrain et à la connectivité des parcelles.</p>
+      </div>
+
+      <div class="fiche">
+        <h3>9.2 Assemblage électronique&nbsp;: Foxconn</h3>
+        <p>Robots et jumeaux numériques pour les opérations fines (vissage, insertion de câbles).</p>
+        <p>Cycles plus courts et moins d'erreurs.</p>
+        <p class="cond">Condition de réussite&nbsp;: intégration logicielle et maintenance prédictive.</p>
+      </div>
+
+      <div class="fiche">
+        <h3>10. Humanoïdes en magasin&nbsp;: Føtex et Hive Robots (Danemark)</h3>
+        <p>Expérimentation en cours pour le réapprovisionnement nocturne.</p>
+        <p>Exemple «&nbsp;en devenir&nbsp;» qui reste lié au point de départ de cette réflexion.</p>
+        <p class="cond">Condition de réussite&nbsp;: autonomie et coût total par heure utile encore à démontrer.</p>
+      </div>
+
+      <h3>Autres exemples</h3>
+      <p>Filière pêche en Islande (FANUC et Samey Robotics), récolte de fruits délicats (Agrobot), palettisation industrielle.</p>
+      <p class="note">Sources&nbsp;: publications d'entreprises et Fédération internationale de la robotique.</p>
+    </section>
+
+    <section class="block">
+      <h2>II. La mesure juste</h2>
+      <div class="formule">Coût par unité conforme produite = coût total sur la période / nombre d'unités conformes produites sur cette période</div>
+      <p>Cette formule compare salarié et robot sur une base équitable, en intégrant d'un côté salaires, charges, formation et absences, de l'autre achat ou location, énergie, maintenance, supervision et taux d'erreurs.</p>
+      <p>Une heure de fonctionnement n'est pas forcément une heure utile.</p>
+      <p>Il faut comparer sur une même période et pour une qualité comparable.</p>
+    </section>
+
+    <section class="block">
+      <h2>III. Les pays capables</h2>
+      <p>Selon l'IFR World Robotics 2025 (données 2024), la Corée du Sud détient 1&nbsp;220 robots pour 10&nbsp;000 salariés de l'industrie manufacturière, la moyenne mondiale s'établit à 132 et l'Union européenne à 231.</p>
+      <p>Trois niveaux de capacité se distinguent&nbsp;:</p>
+      <ol class="doc-list">
+        <li>Utiliser les technologies (achat et déploiement).</li>
+        <li>Maîtriser leur intégration et leur maintenance.</li>
+        <li>Les concevoir et les produire.</li>
+      </ol>
+      <p>Les gains les plus durables apparaissent quand un pays progresse vers les niveaux 2 et 3.</p>
+    </section>
+
+    <section class="block">
+      <h2>Conclusion</h2>
+      <p>Le dénominateur commun des exemples est clair&nbsp;: le rendement vient du volume, du travail continu (y compris de nuit) et du déplacement de l'humain vers la supervision, le contrôle et les tâches à plus haute valeur.</p>
+      <p>L'humain est le plus souvent déplacé, parfois remplacé. La formation devient alors une condition du mieux-vivre.</p>
+      <p>La technologie crée les conditions d'une hausse de productivité et donc de PIB.</p>
+      <p>La manière dont ces gains sont répartis (réinvestissement, prix, salaires, conditions de travail) décide s'ils se transforment réellement en mieux-vivre.</p>
+      <p class="phrase-finale">Le robot remplit les rayons&nbsp;; à l'humain de remplir le sens.</p>
+    </section>
+
+    <section class="block">
+      <h2>Note de méthode et sources</h2>
+      <p class="note">Les chiffres retenus sont ceux annoncés par les entreprises ou par la Fédération internationale de la robotique.</p>
+      <p class="note">Ils ne sont pas directement comparables entre eux et ne garantissent pas un résultat identique ailleurs.</p>
+      <p class="note">Une évaluation locale du coût total, de la qualité produite et de la maintenance reste nécessaire avant tout investissement.</p>
+    </section>
+
+    <a class="back-link" href="dossiers.html">Retour aux Dossiers</a>
+
+  </div>
+
+  <!-- ===================== ENGLISH ===================== -->
+  <div class="lang-content" data-lang="en">
+
+    <a class="back-link" href="dossiers.html">Back to Dossiers</a>
+
+    <section class="block">
+      <h2>Introduction</h2>
+      <p>The five documents published on the 6voices.ai website trace a single path: from thought and reflection toward the reality of complementarity between humans and AI.</p>
+      <ol class="doc-list">
+        <li class="current">Concrete Examples of Productivity Gains from Robots and AI (this document, 12.10.2026)</li>
+        <li><a href="ia-derriere-ecran/index.html">AI Behind the Screen: From One Voice to an Organization</a> (10.10.2026)</li>
+        <li><a href="dossier-humain-facea-ia.html">The Human Facing Artificial Intelligence</a> (25.09.2026)</li>
+        <li><a href="dossier-architectures.html">Architectures: Human Brain vs AI Model</a> (22.08.2026)</li>
+        <li><a href="dossier-ia-cyber.html">AI and Cyber</a> (31.07.2026)</li>
+      </ol>
+      <p>The first four documents raised the fundamental questions: security, how the brain and the machine compare, the place of humans facing AI, and then what lies behind the screen.</p>
+      <p>This document takes a further step: it leaves the realm of ideas for that of facts, and looks at how, in industry, logistics, agriculture and agri-food, humans and machines are already working together.</p>
+    </section>
+
+    <section class="block">
+      <h2>Preamble</h2>
+      <p>The starting point of this reflection is concrete: the experiment, presented in 2026, of humanoid robots in a Føtex supermarket in Denmark, restocking shelves at night.</p>
+      <p>The choice of fields serves a precise objective: to measure economic gains in concrete terms.</p>
+      <p>Industry, logistics, agriculture and agri-food are the sectors where productivity can be quantified most clearly (volumes, repetitive tasks, physical strain, labour shortages) and where it feeds directly into GDP through production and exports.</p>
+      <p>This scope does not claim to cover every possible contribution of AI to society.</p>
+      <p>The excluded fields (military, health, education, ecology) raise human and ethical questions that go beyond productivity alone and would deserve their own treatment.</p>
+    </section>
+
+    <section class="block">
+      <h2>I. Ten converging examples</h2>
+
+      <div class="fiche">
+        <h3>1. Warehouse logistics: Amazon (United States)</h3>
+        <p>More than one million robots.</p>
+        <p>According to Amazon, the Sequoia system can identify and store incoming goods up to 75% faster and cut order processing time by up to 25%.</p>
+        <p class="cond">Condition for success: high volumes and coordination of flows on a very large scale.</p>
+      </div>
+
+      <div class="fiche">
+        <h3>2. Automated ports: Rotterdam (Netherlands), Yangshan and Qingdao (China)</h3>
+        <p>Cranes and autonomous vehicles operating around the clock.</p>
+        <p>Shorter ship turnaround times and faster flows.</p>
+        <p class="cond">Condition for success: heavy investment and large volumes.</p>
+      </div>
+
+      <div class="fiche">
+        <h3>3. Lights-out factories and the automotive industry: Japan, Korea, Germany, China</h3>
+        <p>Welding, painting and assembly lines almost entirely robotized.</p>
+        <p>Continuous production, constant precision, a sharp reduction in arduous tasks.</p>
+        <p class="cond">Condition for success: standardization and large volumes.</p>
+      </div>
+
+      <div class="fiche">
+        <h3>4. Predictive maintenance: Siemens and European manufacturers</h3>
+        <p>Sensors and AI anticipate breakdowns.</p>
+        <p>A significant reduction in unplanned downtime and a longer equipment life.</p>
+        <p class="cond">Condition for success: quality of data and sensors.</p>
+      </div>
+
+      <div class="fiche">
+        <h3>5. Optical food sorting: Tomra (Norway) and similar systems</h3>
+        <p>High-speed sorting of fruit, vegetables and grain.</p>
+        <p>Fewer losses and more consistent quality.</p>
+        <p class="cond">Condition for success: high volumes and products that can be relatively standardized.</p>
+      </div>
+
+      <div class="fiche">
+        <h3>6. Meat cutting: Danish Crown (Denmark)</h3>
+        <p>Machine vision and robots.</p>
+        <p>Better material yield and an end to the repetitive movements that cause musculoskeletal disorders.</p>
+        <p class="cond">Condition for success: a controlled environment and strict hygiene.</p>
+      </div>
+
+      <div class="fiche">
+        <h3>7. Milking robots: Lely (Netherlands, Denmark, Sweden)</h3>
+        <p>The cow comes to be milked at her own pace.</p>
+        <p>Farmers are freed from restrictive schedules, with individual monitoring of each animal.</p>
+        <p class="cond">Condition for success: a farm of sufficient size and data monitoring.</p>
+      </div>
+
+      <div class="fiche">
+        <h3>8. Robotized warehouses: Exotec (France) and Ocado (United Kingdom)</h3>
+        <p>Mobile robot systems working at height (Exotec) or on a grid (Ocado).</p>
+        <p>According to Exotec, the system installed at Carrefour handles more than 4,000 orders a day, with storage density multiplied by four.</p>
+        <p class="cond">Condition for success: standardized volumes and an integrated management system, suited to medium-sized warehouses.</p>
+      </div>
+
+      <div class="fiche">
+        <h3>9.1 Precision agriculture: John Deere and Carbon Robotics (United States and Europe)</h3>
+        <p>Targeted spraying and laser weeding.</p>
+        <p>According to John Deere, See &amp; Spray technology delivered an average saving of 59% in herbicide volumes in 2024.</p>
+        <p>Laser weeding reduces the need for manual labour and chemicals.</p>
+        <p class="cond">Condition for success: adaptation to the crop type, the terrain and field connectivity.</p>
+      </div>
+
+      <div class="fiche">
+        <h3>9.2 Electronics assembly: Foxconn</h3>
+        <p>Robots and digital twins for delicate operations (screwing, cable insertion).</p>
+        <p>Shorter cycles and fewer errors.</p>
+        <p class="cond">Condition for success: software integration and predictive maintenance.</p>
+      </div>
+
+      <div class="fiche">
+        <h3>10. Humanoids in stores: Føtex and Hive Robots (Denmark)</h3>
+        <p>An ongoing experiment in night-time restocking.</p>
+        <p>An example "in the making", linked to the starting point of this reflection.</p>
+        <p class="cond">Condition for success: autonomy and total cost per useful hour, still to be demonstrated.</p>
+      </div>
+
+      <h3>Other examples</h3>
+      <p>The fresh fish sector in Iceland (FANUC and Samey Robotics), harvesting of delicate fruit (Agrobot), industrial palletizing.</p>
+      <p class="note">Sources: company publications and the International Federation of Robotics.</p>
+    </section>
+
+    <section class="block">
+      <h2>II. The right measure</h2>
+      <div class="formule">Cost per compliant unit produced = total cost over the period / number of compliant units produced over that period</div>
+      <p>This formula compares employee and robot on a fair basis, taking into account wages, social charges, training and absences on one side, and purchase or leasing, energy, maintenance, supervision and error rates on the other.</p>
+      <p>An hour of operation is not necessarily a useful hour.</p>
+      <p>The comparison must be made over the same period and for comparable quality.</p>
+    </section>
+
+    <section class="block">
+      <h2>III. Countries with the capacity</h2>
+      <p>According to IFR World Robotics 2025 (2024 data), South Korea has 1,220 robots per 10,000 manufacturing employees, the world average stands at 132 and the European Union at 231.</p>
+      <p>Three levels of capacity can be distinguished:</p>
+      <ol class="doc-list">
+        <li>Using the technologies (purchase and deployment).</li>
+        <li>Mastering their integration and maintenance.</li>
+        <li>Designing and producing them.</li>
+      </ol>
+      <p>The most lasting gains appear when a country moves toward levels 2 and 3.</p>
+    </section>
+
+    <section class="block">
+      <h2>Conclusion</h2>
+      <p>The common denominator of these examples is clear: productivity comes from volume, continuous work (including at night) and the shift of humans toward supervision, control and higher-value tasks.</p>
+      <p>Humans are most often moved to other tasks, sometimes replaced. Training then becomes a condition for a better life.</p>
+      <p>Technology creates the conditions for higher productivity, and therefore higher GDP.</p>
+      <p>How these gains are shared (reinvestment, prices, wages, working conditions) decides whether they truly turn into a better life.</p>
+      <p class="phrase-finale">The robot fills the shelves; it is up to humans to fill them with meaning.</p>
+    </section>
+
+    <section class="block">
+      <h2>Methodological note and sources</h2>
+      <p class="note">The figures used are those announced by the companies or by the International Federation of Robotics.</p>
+      <p class="note">They are not directly comparable with one another and do not guarantee an identical result elsewhere.</p>
+      <p class="note">A local assessment of total cost, output quality and maintenance remains necessary before any investment.</p>
+    </section>
+
+    <a class="back-link" href="dossiers.html">Back to Dossiers</a>
+
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <span>© 2026 6Voices</span>
+  <span><a href="ressources.html#contact" data-fr="Contact" data-en="Contact">Contact</a> | <span data-fr="Mentions légales" data-en="Legal Notice">Mentions légales</span></span>
+</footer>
+
+<script src="lang.js"></script>
+</body>
+</html>
