@@ -64,10 +64,32 @@
   nav.doc a:hover { text-decoration: underline; }
   nav.doc .centre { text-align: center; flex: 1 1 100%; order: -1; margin-bottom: 0.4rem; }
   @media print { nav.doc { display: none; } }
+  /* Bascule FR / EN */
+  .langues { text-align: right; margin-bottom: 1rem; }
+  .langues button { font-family: Georgia, "Palatino Linotype", Palatino, serif; font-size: 0.85rem;
+    letter-spacing: 0.1em; background: none; border: 1px solid #b8892e; color: #16264a;
+    padding: 0.25rem 0.7rem; cursor: pointer; }
+  .langues button + button { border-left: none; }
+  .langues button.actif { background: #b8892e; color: #fff; }
+  html.en .fr, html:not(.en) .en { display: none; }
+  @media print { .langues { display: none; } }
 </style>
+<script>
+  /* Applique la langue mémorisée avant l'affichage, pour éviter un clignotement */
+  (function () {
+    var l = 'fr';
+    try { l = localStorage.getItem('6v-doc-lang') || 'fr'; } catch (e) {}
+    if (location.search.indexOf('lang=en') !== -1) l = 'en';
+    if (l === 'en') { document.documentElement.classList.add('en'); document.documentElement.lang = 'en'; }
+  })();
+</script>
 </head>
 <body>
 <main>
+<div class="langues"><button type="button" data-l="fr">FR</button><button type="button" data-l="en">EN</button></div>
+
+<!-- ===================== FRANÇAIS ===================== -->
+<div class="fr">
 
 <h2>VIII. Avant de parler de superintelligence, regardons la facture</h2>
 
@@ -118,6 +140,82 @@
   <a href="chapitre-VII.html">&larr; Chapitre VII</a>
   <a href="annexe.html">Annexe &rarr;</a>
 </nav>
+</div>
+
+<!-- ===================== ENGLISH ===================== -->
+<div class="en">
+<h2>VIII. Before talking about superintelligence, let us look at the bill</h2>
+
+<p class="entree" style="margin-bottom:1.8rem;">Before talking about what AI might become, let us separate what it already does from what we imagine it will do.</p>
+
+<table>
+  <caption>What do we know for certain?</caption>
+  <thead><tr><th>Fact</th><th>Source</th></tr></thead>
+  <tbody>
+    <tr><td>The cost of one hour of dialogue</td><td>Calculated from the public price of a mid-range model, 2026 (chapter II).</td></tr>
+    <tr><td>The energy of a text request</td><td>Measured by Google, August 2025 (chapter III).</td></tr>
+    <tr><td>The extra cost of agents</td><td>About 4 times more text processed for one agent, 15 times more for a multi-agent organization, measured by Anthropic, June 2025 (chapters IV and V).</td></tr>
+    <tr><td>Gains in time and quality</td><td>Up to 90%, on some research tasks and in Anthropic's internal tests (chapter V).</td></tr>
+    <tr><td>The shrinking of free access</td><td>At Google, from 9 October 2026 (chapter III).</td></tr>
+  </tbody>
+</table>
+
+<table>
+  <caption>What do we assume?</caption>
+  <thead><tr><th>Area</th><th>Assumption</th></tr></thead>
+  <tbody>
+    <tr><td>For our calculations</td><td>A typical hour with 2 to 5 pages written by the human, 300 words per page, about 1.5 tokens per word, 3,000 tokens of instructions per exchange (appendix).</td></tr>
+    <tr><td>For the real cost</td><td>Approximated by the public price; no company publishes its internal cost, which is probably lower.</td></tr>
+    <tr><td>For the multipliers</td><td>Measured per interaction; applied to one hour, they give an order of magnitude, not a general rule.</td></tr>
+    <tr><td>For the progress of capabilities</td><td>Likely, but neither its pace nor its limit is known.</td></tr>
+    <tr><td>For falling costs</td><td>Possible, but not guaranteed.</td></tr>
+    <tr><td>For superintelligence</td><td>A hypothesis under discussion, not an observed reality.</td></tr>
+  </tbody>
+</table>
+
+<h3>VIII.1 What we know: sourced and measured facts</h3>
+<p>Every figure in this document that carries a source has been checked. They come from the companies themselves or from the press that reported them. They are facts, but dated facts: they describe autumn 2026. And they have their context: a gain measured on a specific research task does not hold for every task.</p>
+
+<h3>VIII.2 What we assume: hypotheses and estimates</h3>
+<p>Other figures rest on simple and cautious assumptions, published in the appendix so that every reader can redo the calculation or change an assumption. Beyond our calculations lie projections about the future: capabilities that progress, costs that fall, a superintelligence that some foresee. They can be debated; they cannot yet be measured. A fact does not have the same status as a hypothesis.</p>
+
+<h3>VIII.3 What the shift to multi-agent systems really changes for the reader</h3>
+<p>For the reader, the screen stays the same. What changes is behind it: AI no longer just answers, it acts; it no longer works alone, but as a team; and each task costs several times more than a question. Time also shifts: less time to launch a task, more time to check what it has produced. In practice: choosing when a simple question is enough, checking what an agent claims to have achieved, and expecting the most powerful features to remain paid.</p>
+
+<h3>VIII.4 How much trust can we place in an organization of AIs?</h3>
+<p>We do not trust an organization the way we trust a person. Trust must be proportional to the evidence, not to how fluent the text is. It is graduated according to the stakes: a quick check for a simple search, independent sources and human control for a long task, explicit human approval before any irreversible action. And it assumes that someone can still check: if only an expensive system can do the task, who will be able to verify the result? This document is a modest illustration: five AI voices, from competing companies, and one human who arbitrates and validates.</p>
+
+<p style="margin-top:2.2rem;font-style:italic;color:var(--or);font-size:1.15rem;">Before talking about superintelligence, let us look at the bill. It can be calculated. Trust, for its part, must be verified.</p>
+
+
+<nav class="doc">
+  <a class="centre" href="index.html">Back to the document overview</a>
+  <a href="chapitre-VII.html">&larr; Chapter VII</a>
+  <a href="annexe.html">Appendix &rarr;</a>
+</nav>
+</div>
 </main>
+<script>
+  /* Bascule FR / EN, mémorisée pour toutes les pages du document */
+  (function () {
+    var root = document.documentElement;
+    function marquer() {
+      var en = root.classList.contains('en');
+      document.querySelectorAll('.langues button').forEach(function (b) {
+        b.classList.toggle('actif', (b.getAttribute('data-l') === 'en') === en);
+      });
+    }
+    document.querySelectorAll('.langues button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var l = b.getAttribute('data-l');
+        root.classList.toggle('en', l === 'en');
+        root.lang = l;
+        try { localStorage.setItem('6v-doc-lang', l); } catch (e) {}
+        marquer();
+      });
+    });
+    marquer();
+  })();
+</script>
 </body>
 </html>

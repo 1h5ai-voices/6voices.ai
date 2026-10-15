@@ -69,10 +69,32 @@
   nav.doc a:hover { text-decoration: underline; }
   nav.doc .centre { text-align: center; flex: 1 1 100%; order: -1; margin-bottom: 0.4rem; }
   @media print { nav.doc { display: none; } }
+  /* Bascule FR / EN */
+  .langues { text-align: right; margin-bottom: 1rem; }
+  .langues button { font-family: Georgia, "Palatino Linotype", Palatino, serif; font-size: 0.85rem;
+    letter-spacing: 0.1em; background: none; border: 1px solid #b8892e; color: #16264a;
+    padding: 0.25rem 0.7rem; cursor: pointer; }
+  .langues button + button { border-left: none; }
+  .langues button.actif { background: #b8892e; color: #fff; }
+  html.en .fr, html:not(.en) .en { display: none; }
+  @media print { .langues { display: none; } }
 </style>
+<script>
+  /* Applique la langue mémorisée avant l'affichage, pour éviter un clignotement */
+  (function () {
+    var l = 'fr';
+    try { l = localStorage.getItem('6v-doc-lang') || 'fr'; } catch (e) {}
+    if (location.search.indexOf('lang=en') !== -1) l = 'en';
+    if (l === 'en') { document.documentElement.classList.add('en'); document.documentElement.lang = 'en'; }
+  })();
+</script>
 </head>
 <body>
 <main>
+<div class="langues"><button type="button" data-l="fr">FR</button><button type="button" data-l="en">EN</button></div>
+
+<!-- ===================== FRANÇAIS ===================== -->
+<div class="fr">
 
 <h2>V. Du modèle unique à l'organisation d'agents</h2>
 
@@ -122,6 +144,81 @@
   <a href="chapitre-IV.html">&larr; Chapitre IV</a>
   <a href="chapitre-VI.html">Chapitre VI &rarr;</a>
 </nav>
+</div>
+
+<!-- ===================== ENGLISH ===================== -->
+<div class="en">
+<h2>V. From a single model to an organization of agents</h2>
+
+<table class="roles">
+  <caption>How does an organization of agents work?</caption>
+  <thead><tr><th>Role</th><th>What it does</th></tr></thead>
+  <tbody>
+    <tr><td>The coordinator</td><td>It receives the goal, breaks it into subtasks, assigns them, then assembles the results.</td></tr>
+    <tr><td>The researcher</td><td>It gathers the necessary information.</td></tr>
+    <tr><td>The analyst</td><td>It compares, reasons, interprets.</td></tr>
+    <tr><td>The checker</td><td>It verifies dates, sources and figures.</td></tr>
+    <tr><td>The writer</td><td>It turns the results into an answer or a document.</td></tr>
+    <tr><td>How many agents?</td><td>According to Anthropic (2025): a simple search, 1 agent; a comparison, 2&nbsp;to&nbsp;4 agents; a complex research task, more than 10 agents.</td></tr>
+  </tbody>
+</table>
+
+<table class="facture">
+  <caption>The same task: what bill, and how much time?<small>(basis: one hour of heavy dialogue, chapter II; orders of magnitude)</small></caption>
+  <thead><tr><th>Approach</th><th>Text processed</th><th>Cost</th><th>Time</th></tr></thead>
+  <tbody>
+    <tr><td>Simple conversation</td><td>1 time</td><td>€0.21&nbsp;to&nbsp;€0.68<br><span class="usd">($0.24&nbsp;to&nbsp;$0.78)</span></td><td>Short.</td></tr>
+    <tr><td>One agent</td><td>About 4 times</td><td>€0.84&nbsp;to&nbsp;€2.72<br><span class="usd">($0.96&nbsp;to&nbsp;$3.12)</span></td><td>Longer, sequential, the steps follow one after another.</td></tr>
+    <tr><td>Multi-agent organization</td><td>About 15 times</td><td>€3.15&nbsp;to&nbsp;€10.20<br><span class="usd">($3.61&nbsp;to&nbsp;$11.69)</span></td><td>Shorter, up to 90% faster on some complex research tasks thanks to parallel work (Anthropic 2025).</td></tr>
+    <tr class="total"><td>1 million tasks carried out by a multi-agent organization</td><td colspan="3">3.15&nbsp;to&nbsp;10.2 million euros (3.6&nbsp;to&nbsp;11.7 million dollars).</td></tr>
+  </tbody>
+</table>
+
+<p class="entree">Chapter IV showed it: a single voice runs out of breath on a long task. Hence the idea of sharing the work.</p>
+
+<h3>V.1 Several agents, several roles, one coordination</h3>
+<p>A coordinating agent receives the goal, breaks it down and hands each part to a specialized agent: one searches, another analyzes, another checks, another writes. It is often the same model, copied several times with a different role for each copy, sometimes different models. The coordinator then gathers their results. It is how a small team is organized, applied to machines.</p>
+
+<h3>V.2 The user no longer talks to an AI, but to an organization of AIs</h3>
+<p>On screen, nothing changes: a request, an answer. Behind it, several agents have worked, exchanged their results and coordinated. The user sees neither the breakdown, nor the exchanges, nor the steps abandoned along the way.</p>
+
+<h3>V.3 One AI or an organization of AIs: the same task, two bills (table in € / $ and time)</h3>
+<p>Each agent rereads its own part, and the coordinator rereads everyone's work. According to Anthropic (2025), a multi-agent system processes about 15 times more text than a simple conversation. In its internal research tests, Anthropic reports an improvement of up to 90% compared with a single agent, achieved faster. Time against tokens, speed against the bill.</p>
+
+<h3>V.4 What multi-agent systems cost, and who will pay: profitability for the provider, price for the user</h3>
+<p>At a million tasks, the bill runs into millions of euros. For the provider, multi-agent systems are only profitable if the task is valuable enough to justify the extra cost: it may therefore reserve them for demanding uses and paid plans. For the free user, a question arises: how long can fifteen times more computing remain free?</p>
+
+<p class="final">Multi-agent systems are not a saving: they are an additional expense, justified when the task is worth it. It remains to be seen who will truly benefit from this productivity.</p>
+
+
+<nav class="doc">
+  <a class="centre" href="index.html">Back to the document overview</a>
+  <a href="chapitre-IV.html">&larr; Chapter IV</a>
+  <a href="chapitre-VI.html">Chapter VI &rarr;</a>
+</nav>
+</div>
 </main>
+<script>
+  /* Bascule FR / EN, mémorisée pour toutes les pages du document */
+  (function () {
+    var root = document.documentElement;
+    function marquer() {
+      var en = root.classList.contains('en');
+      document.querySelectorAll('.langues button').forEach(function (b) {
+        b.classList.toggle('actif', (b.getAttribute('data-l') === 'en') === en);
+      });
+    }
+    document.querySelectorAll('.langues button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var l = b.getAttribute('data-l');
+        root.classList.toggle('en', l === 'en');
+        root.lang = l;
+        try { localStorage.setItem('6v-doc-lang', l); } catch (e) {}
+        marquer();
+      });
+    });
+    marquer();
+  })();
+</script>
 </body>
 </html>

@@ -64,10 +64,32 @@
   nav.doc a:hover { text-decoration: underline; }
   nav.doc .centre { text-align: center; flex: 1 1 100%; order: -1; margin-bottom: 0.4rem; }
   @media print { nav.doc { display: none; } }
+  /* Bascule FR / EN */
+  .langues { text-align: right; margin-bottom: 1rem; }
+  .langues button { font-family: Georgia, "Palatino Linotype", Palatino, serif; font-size: 0.85rem;
+    letter-spacing: 0.1em; background: none; border: 1px solid #b8892e; color: #16264a;
+    padding: 0.25rem 0.7rem; cursor: pointer; }
+  .langues button + button { border-left: none; }
+  .langues button.actif { background: #b8892e; color: #fff; }
+  html.en .fr, html:not(.en) .en { display: none; }
+  @media print { .langues { display: none; } }
 </style>
+<script>
+  /* Applique la langue mémorisée avant l'affichage, pour éviter un clignotement */
+  (function () {
+    var l = 'fr';
+    try { l = localStorage.getItem('6v-doc-lang') || 'fr'; } catch (e) {}
+    if (location.search.indexOf('lang=en') !== -1) l = 'en';
+    if (l === 'en') { document.documentElement.classList.add('en'); document.documentElement.lang = 'en'; }
+  })();
+</script>
 </head>
 <body>
 <main>
+<div class="langues"><button type="button" data-l="fr">FR</button><button type="button" data-l="en">EN</button></div>
+
+<!-- ===================== FRANÇAIS ===================== -->
+<div class="fr">
 
 <h2>II. Ce que le lecteur ne voit pas : la facture réelle</h2>
 
@@ -159,6 +181,123 @@
   <a href="chapitre-I.html">&larr; Chapitre I</a>
   <a href="chapitre-III.html">Chapitre III &rarr;</a>
 </nav>
+</div>
+
+<!-- ===================== ENGLISH ===================== -->
+<div class="en">
+<h2>II. What the reader does not see: the real bill</h2>
+
+<h3>II.1 Why measure in pages?</h3>
+<p>The number of questions asked in an hour depends on each person's pace, not on the machine. A book page is a unit everyone knows. It makes it possible to compare at a glance what the human writes, what the AI writes back, and what the AI must reread in order to answer.</p>
+
+<h3>II.2 Why 300 words per page?</h3>
+<p>A page of an ordinary book holds between 250 and 400 words, depending on the format. We use 300 words, an average close to reality and easy to handle.</p>
+<table>
+  <thead><tr><th>Pages</th><th>Words</th></tr></thead>
+  <tbody>
+    <tr><td>10 pages</td><td>3,000 words</td></tr>
+    <tr><td>100 pages</td><td>30,000 words</td></tr>
+    <tr><td>1,000 pages</td><td>300,000 words</td></tr>
+  </tbody>
+</table>
+
+<h3>II.3 Three human rhythms</h3>
+<table>
+  <caption>In one hour of dialogue, the human writes roughly:</caption>
+  <thead><tr><th>Profile</th><th>Pages written</th></tr></thead>
+  <tbody>
+    <tr><td>Student</td><td>3&nbsp;to&nbsp;5 pages</td></tr>
+    <tr><td>Adult</td><td>1.5&nbsp;to&nbsp;3 pages</td></tr>
+    <tr><td>Older person</td><td>0.5&nbsp;to&nbsp;1.5 pages</td></tr>
+  </tbody>
+</table>
+<p>These are orders of magnitude, which vary with ease of writing and time spent thinking.</p>
+
+<h3>II.4 What the AI produces in return</h3>
+<p>Whatever the human's pace, the AI answers within seconds, and with far more text.</p>
+<p>Light use (mostly adults and older people): the human writes about 2 pages, the AI about 10.</p>
+<p>Heavy use (mostly students): the human writes about 5 pages, the AI about 30.</p>
+
+<h3>II.5 What the model must process as the dialogue goes on</h3>
+<p>AI has no memory in the human sense. It must reread the history every time, with techniques to lighten the load.</p>
+<table>
+  <thead><tr><th>Use</th><th>Pages reread in one hour</th></tr></thead>
+  <tbody>
+    <tr><td>Light use</td><td>about 120 pages, a short book</td></tr>
+    <tr><td>Heavy use</td><td>about 700 pages, two or three novels</td></tr>
+  </tbody>
+</table>
+<p>These figures are orders of magnitude; they do not describe every model working in exactly the same way.</p>
+
+<h3>II.6 What order of magnitude of cost?</h3>
+<table>
+  <caption>Computing cost for one hour, at the public price of a mid-range model:</caption>
+  <thead><tr><th>Use</th><th>Cost for one hour</th></tr></thead>
+  <tbody>
+    <tr><td>Light use</td><td>€0.06&nbsp;to&nbsp;€0.13<br><span class="usd">($0.07&nbsp;to&nbsp;$0.15)</span></td></tr>
+    <tr><td>Heavy use</td><td>€0.21&nbsp;to&nbsp;€0.68<br><span class="usd">($0.24&nbsp;to&nbsp;$0.78)</span></td></tr>
+  </tbody>
+</table>
+<table>
+  <caption>In everyday life:</caption>
+  <thead><tr><th>Benchmark</th><th>Pays for roughly</th></tr></thead>
+  <tbody>
+    <tr><td>A bus ticket in Nice (€1.70)</td><td>2&nbsp;to&nbsp;8 hours of heavy dialogue</td></tr>
+    <tr><td>A coffee at the counter (€1.80)</td><td>2.5&nbsp;to&nbsp;8.5 hours</td></tr>
+    <tr><td>A baguette (€1.10)</td><td>1.5&nbsp;to&nbsp;5 hours</td></tr>
+  </tbody>
+</table>
+<p>One hour a day for a month costs between €6 and €20, roughly the price of a subscription.</p>
+
+<h3>II.7 What happens to this cost at large scale?</h3>
+<table>
+  <thead><tr><th>Volume</th><th>Light use</th><th>Heavy use</th></tr></thead>
+  <tbody>
+    <tr><td>1,000 hours of dialogue</td><td>€60&nbsp;to&nbsp;€130<br><span class="usd">($70&nbsp;to&nbsp;$150)</span></td><td>€210&nbsp;to&nbsp;€680<br><span class="usd">($240&nbsp;to&nbsp;$780)</span></td></tr>
+    <tr><td>1 million hours of dialogue</td><td>€60,000&nbsp;to&nbsp;€130,000<br><span class="usd">($70,000&nbsp;to&nbsp;$150,000)</span></td><td>€210,000&nbsp;to&nbsp;€680,000<br><span class="usd">($240,000&nbsp;to&nbsp;$780,000)</span></td></tr>
+  </tbody>
+</table>
+<p>These amounts cover computing only. Data centers, energy, staff and research come on top, but no company publishes them: these figures are a floor, not a total.</p>
+
+<h3>II.8 Who pays when the user does not?</h3>
+<p>Subscribers, whose plan covers their own use and part of everyone else's.</p>
+<p>Investors, who fund the losses while waiting for profitability.</p>
+<p>With some providers, other businesses, such as advertising.</p>
+<p>And the free user, though not in euros: lighter models, tighter quotas, reserved features.</p>
+
+<p class="final">Free for the user never means free of cost for whoever provides the computing. The cost is invisible at the click, but real at scale.</p>
+
+<p class="ouverture">The bottleneck is the human, not the AI.</p>
+
+
+<nav class="doc">
+  <a class="centre" href="index.html">Back to the document overview</a>
+  <a href="chapitre-I.html">&larr; Chapter I</a>
+  <a href="chapitre-III.html">Chapter III &rarr;</a>
+</nav>
+</div>
 </main>
+<script>
+  /* Bascule FR / EN, mémorisée pour toutes les pages du document */
+  (function () {
+    var root = document.documentElement;
+    function marquer() {
+      var en = root.classList.contains('en');
+      document.querySelectorAll('.langues button').forEach(function (b) {
+        b.classList.toggle('actif', (b.getAttribute('data-l') === 'en') === en);
+      });
+    }
+    document.querySelectorAll('.langues button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var l = b.getAttribute('data-l');
+        root.classList.toggle('en', l === 'en');
+        root.lang = l;
+        try { localStorage.setItem('6v-doc-lang', l); } catch (e) {}
+        marquer();
+      });
+    });
+    marquer();
+  })();
+</script>
 </body>
 </html>

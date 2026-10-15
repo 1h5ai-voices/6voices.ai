@@ -64,10 +64,32 @@
   nav.doc a:hover { text-decoration: underline; }
   nav.doc .centre { text-align: center; flex: 1 1 100%; order: -1; margin-bottom: 0.4rem; }
   @media print { nav.doc { display: none; } }
+  /* Bascule FR / EN */
+  .langues { text-align: right; margin-bottom: 1rem; }
+  .langues button { font-family: Georgia, "Palatino Linotype", Palatino, serif; font-size: 0.85rem;
+    letter-spacing: 0.1em; background: none; border: 1px solid #b8892e; color: #16264a;
+    padding: 0.25rem 0.7rem; cursor: pointer; }
+  .langues button + button { border-left: none; }
+  .langues button.actif { background: #b8892e; color: #fff; }
+  html.en .fr, html:not(.en) .en { display: none; }
+  @media print { .langues { display: none; } }
 </style>
+<script>
+  /* Applique la langue mémorisée avant l'affichage, pour éviter un clignotement */
+  (function () {
+    var l = 'fr';
+    try { l = localStorage.getItem('6v-doc-lang') || 'fr'; } catch (e) {}
+    if (location.search.indexOf('lang=en') !== -1) l = 'en';
+    if (l === 'en') { document.documentElement.classList.add('en'); document.documentElement.lang = 'en'; }
+  })();
+</script>
 </head>
 <body>
 <main>
+<div class="langues"><button type="button" data-l="fr">FR</button><button type="button" data-l="en">EN</button></div>
+
+<!-- ===================== FRANÇAIS ===================== -->
+<div class="fr">
 
 <h2>VII. Avantages et risques en balance</h2>
 
@@ -111,6 +133,75 @@
   <a href="chapitre-VI.html">&larr; Chapitre VI</a>
   <a href="chapitre-VIII.html">Chapitre VIII &rarr;</a>
 </nav>
+</div>
+
+<!-- ===================== ENGLISH ===================== -->
+<div class="en">
+<h2>VII. Benefits and risks in the balance</h2>
+
+<table>
+  <caption>What do we gain with an organization of agents?</caption>
+  <thead><tr><th>Gain</th><th>What it brings</th></tr></thead>
+  <tbody>
+    <tr><td>Specialization</td><td>Each agent does one thing only: search, analyze, check, write.</td></tr>
+    <tr><td>Speed</td><td>Parallel work can cut the time by up to 90% on some complex research tasks (Anthropic 2025).</td></tr>
+    <tr><td>Quality</td><td>In its internal research tests, Anthropic reports an improvement of up to 90% compared with a single agent.</td></tr>
+    <tr><td>Continuity</td><td>A task can continue over time and come back every week, without the human restarting it at each step.</td></tr>
+  </tbody>
+</table>
+
+<table>
+  <caption>What do we risk in return?</caption>
+  <thead><tr><th>Risk</th><th>What it means</th></tr></thead>
+  <tbody>
+    <tr><td>Complexity</td><td>More agents, more exchanges, more points where the system can get stuck.</td></tr>
+    <tr><td>Propagated errors</td><td>An error at the start can become an answer that is wrong, but coherent (chapter VI).</td></tr>
+    <tr><td>Opacity</td><td>The user sees neither the breakdown, nor the exchanges between agents, nor the abandoned steps (chapter V).</td></tr>
+    <tr><td>Hidden costs</td><td>Not concealed, but invisible to the user: about 15 times more text processed than in a simple conversation (Anthropic 2025).</td></tr>
+  </tbody>
+</table>
+
+<h3>VII.1 What we gain: specialization, speed, continuity</h3>
+<p>An organization of agents does what a single voice cannot: divide a task, advance it on several fronts at once, and pursue it over time. It is the model of the workshop, not of the lone genius. For broad research, a detailed comparison or regular monitoring, the gain is real: faster, more complete, with no constant restarting.</p>
+
+<h3>VII.2 What we risk: complexity, propagated errors, opacity, hidden costs</h3>
+<p>Every gain has its counterpart. Specialization multiplies exchanges, and therefore complexity. Speed is paid for in computing. Quality depends on the strength of each link: a wrong source becomes a quotation, which becomes an argument. And the more the system works alone, the less the user sees what it does, and what it costs.</p>
+
+<h3>VII.3 The technical and economic limits that remain</h3>
+<p>Not everything can be divided: according to Anthropic, most programming tasks contain fewer truly parallelizable parts than research does, and agents cannot yet coordinate well in real time. Human supervision has its limits too: two hundred pages produced in ten minutes, for example, cannot be reviewed with the same care as a single one. Multi-agent systems remain expensive, reserved first for the uses that are worth it, and they do not remove the physical limits described in chapter III. If their cost rises, one question becomes unavoidable: who will really be able to use them?</p>
+
+<p style="margin-top:2rem;">The balance therefore tips neither toward enthusiasm nor toward fear. It depends on the task, on its cost, and on the place left to the human.</p>
+<p style="font-style:italic;color:var(--or);font-size:1.1rem;">Does what we gain justify what we add?</p>
+
+
+<nav class="doc">
+  <a class="centre" href="index.html">Back to the document overview</a>
+  <a href="chapitre-VI.html">&larr; Chapter VI</a>
+  <a href="chapitre-VIII.html">Chapter VIII &rarr;</a>
+</nav>
+</div>
 </main>
+<script>
+  /* Bascule FR / EN, mémorisée pour toutes les pages du document */
+  (function () {
+    var root = document.documentElement;
+    function marquer() {
+      var en = root.classList.contains('en');
+      document.querySelectorAll('.langues button').forEach(function (b) {
+        b.classList.toggle('actif', (b.getAttribute('data-l') === 'en') === en);
+      });
+    }
+    document.querySelectorAll('.langues button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var l = b.getAttribute('data-l');
+        root.classList.toggle('en', l === 'en');
+        root.lang = l;
+        try { localStorage.setItem('6v-doc-lang', l); } catch (e) {}
+        marquer();
+      });
+    });
+    marquer();
+  })();
+</script>
 </body>
 </html>

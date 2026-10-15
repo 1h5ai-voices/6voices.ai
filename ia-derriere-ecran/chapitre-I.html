@@ -89,10 +89,32 @@
   nav.doc a:hover { text-decoration: underline; }
   nav.doc .centre { text-align: center; flex: 1 1 100%; order: -1; margin-bottom: 0.4rem; }
   @media print { nav.doc { display: none; } }
+  /* Bascule FR / EN */
+  .langues { text-align: right; margin-bottom: 1rem; }
+  .langues button { font-family: Georgia, "Palatino Linotype", Palatino, serif; font-size: 0.85rem;
+    letter-spacing: 0.1em; background: none; border: 1px solid #b8892e; color: #16264a;
+    padding: 0.25rem 0.7rem; cursor: pointer; }
+  .langues button + button { border-left: none; }
+  .langues button.actif { background: #b8892e; color: #fff; }
+  html.en .fr, html:not(.en) .en { display: none; }
+  @media print { .langues { display: none; } }
 </style>
+<script>
+  /* Applique la langue mémorisée avant l'affichage, pour éviter un clignotement */
+  (function () {
+    var l = 'fr';
+    try { l = localStorage.getItem('6v-doc-lang') || 'fr'; } catch (e) {}
+    if (location.search.indexOf('lang=en') !== -1) l = 'en';
+    if (l === 'en') { document.documentElement.classList.add('en'); document.documentElement.lang = 'en'; }
+  })();
+</script>
 </head>
 <body>
 <main>
+<div class="langues"><button type="button" data-l="fr">FR</button><button type="button" data-l="en">EN</button></div>
+
+<!-- ===================== FRANÇAIS ===================== -->
+<div class="fr">
 
 <h2>I. Une conversation paraît simple : ce que le lecteur croit voir</h2>
 
@@ -127,6 +149,66 @@
   <span></span>
   <a href="chapitre-II.html">Chapitre II &rarr;</a>
 </nav>
+</div>
+
+<!-- ===================== ENGLISH ===================== -->
+<div class="en">
+<h2>I. A conversation looks simple: what the reader thinks they see</h2>
+
+<table>
+  <caption>Is what the screen shows true?</caption>
+  <thead>
+    <tr><th>What the reader believes</th><th>What really happens</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>The AI is in my phone.</td><td>It runs in distant computing centers.</td></tr>
+    <tr><td>A single AI answers me.</td><td>The same model is copied onto thousands of machines, and each copy serves several conversations at once.</td></tr>
+    <tr><td>The AI remembers our exchange.</td><td>With every message, the whole conversation is sent back and reread from the beginning.</td></tr>
+    <tr><td>The AI understands like a human.</td><td>It calculates the most probable continuation of the text.</td></tr>
+    <tr><td>The answer is written all at once.</td><td>It is built piece by piece.</td></tr>
+    <tr><td>It is free.</td><td>Every answer consumes computing power, hardware and energy; someone pays.</td></tr>
+  </tbody>
+</table>
+
+<p>On screen, everything seems simple: a human writes a question, then an AI answers within seconds. Nothing feels more natural than an exchange that continues in the same window.</p>
+
+<p>Yet simplicity of use does not mean simplicity of operation.</p>
+
+<p>What we see is only part of reality. Behind the exchange lie infrastructure, computation, energy and resources that the user does not perceive.</p>
+
+<p>This first gap is essential to understanding what follows.</p>
+
+<p class="ouverture">What is the real bill for one hour of dialogue with an AI?</p>
+
+
+<nav class="doc">
+  <a class="centre" href="index.html">Back to the document overview</a>
+  <span></span>
+  <a href="chapitre-II.html">Chapter II &rarr;</a>
+</nav>
+</div>
 </main>
+<script>
+  /* Bascule FR / EN, mémorisée pour toutes les pages du document */
+  (function () {
+    var root = document.documentElement;
+    function marquer() {
+      var en = root.classList.contains('en');
+      document.querySelectorAll('.langues button').forEach(function (b) {
+        b.classList.toggle('actif', (b.getAttribute('data-l') === 'en') === en);
+      });
+    }
+    document.querySelectorAll('.langues button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var l = b.getAttribute('data-l');
+        root.classList.toggle('en', l === 'en');
+        root.lang = l;
+        try { localStorage.setItem('6v-doc-lang', l); } catch (e) {}
+        marquer();
+      });
+    });
+    marquer();
+  })();
+</script>
 </body>
 </html>

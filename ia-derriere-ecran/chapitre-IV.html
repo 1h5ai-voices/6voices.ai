@@ -64,10 +64,32 @@
   nav.doc a:hover { text-decoration: underline; }
   nav.doc .centre { text-align: center; flex: 1 1 100%; order: -1; margin-bottom: 0.4rem; }
   @media print { nav.doc { display: none; } }
+  /* Bascule FR / EN */
+  .langues { text-align: right; margin-bottom: 1rem; }
+  .langues button { font-family: Georgia, "Palatino Linotype", Palatino, serif; font-size: 0.85rem;
+    letter-spacing: 0.1em; background: none; border: 1px solid #b8892e; color: #16264a;
+    padding: 0.25rem 0.7rem; cursor: pointer; }
+  .langues button + button { border-left: none; }
+  .langues button.actif { background: #b8892e; color: #fff; }
+  html.en .fr, html:not(.en) .en { display: none; }
+  @media print { .langues { display: none; } }
 </style>
+<script>
+  /* Applique la langue mémorisée avant l'affichage, pour éviter un clignotement */
+  (function () {
+    var l = 'fr';
+    try { l = localStorage.getItem('6v-doc-lang') || 'fr'; } catch (e) {}
+    if (location.search.indexOf('lang=en') !== -1) l = 'en';
+    if (l === 'en') { document.documentElement.classList.add('en'); document.documentElement.lang = 'en'; }
+  })();
+</script>
 </head>
 <body>
 <main>
+<div class="langues"><button type="button" data-l="fr">FR</button><button type="button" data-l="en">EN</button></div>
+
+<!-- ===================== FRANÇAIS ===================== -->
+<div class="fr">
 
 <h2>IV. De la question à la tâche : une seule voix peut-elle tout faire ?</h2>
 
@@ -112,6 +134,76 @@
   <a href="chapitre-III.html">&larr; Chapitre III</a>
   <a href="chapitre-V.html">Chapitre V &rarr;</a>
 </nav>
+</div>
+
+<!-- ===================== ENGLISH ===================== -->
+<div class="en">
+<h2>IV. From question to task: can a single voice do everything?</h2>
+
+<table>
+  <caption>What is the difference between asking a question and assigning a task?</caption>
+  <thead><tr><th>Point</th><th>Answer</th></tr></thead>
+  <tbody>
+    <tr><td>A question</td><td>"What will the weather be like in Nice tomorrow?" One turn: the AI reads, calculates, answers.</td></tr>
+    <tr><td>A task</td><td>"Every Monday, compare electricity prices, check the sources, and prepare a summary for me." Dozens of turns: search, read, compare, check, write.</td></tr>
+    <tr><td>In short</td><td>1 question = 1 turn; 1 task = N turns.</td></tr>
+    <tr><td>Who decides the steps?</td><td>For a question, the human. For a task, the AI itself, within the framework set by the human.</td></tr>
+    <tr><td>How much text is processed?</td><td>According to Anthropic (2025), a task given to an agent consumes about 4 times more processed text than a simple conversation.</td></tr>
+  </tbody>
+</table>
+
+<table>
+  <caption>How does an agent carry out a task?</caption>
+  <thead><tr><th>Step</th><th>What happens</th></tr></thead>
+  <tbody>
+    <tr><td>1. Goal</td><td>The human sets the goal and describes what a good result looks like.</td></tr>
+    <tr><td>2. Tool</td><td>The agent chooses a way to act: search the web, open a file, calculate.</td></tr>
+    <tr><td>3. Observation</td><td>It looks at what the tool has returned.</td></tr>
+    <tr><td>4. Decision</td><td>It chooses the next step.</td></tr>
+    <tr><td>5. Verification</td><td>It checks whether the result matches the goal.</td></tr>
+    <tr><td>6. Done, or a new turn</td><td>If the result is right, it stops. If not, it goes around the loop again.</td></tr>
+  </tbody>
+</table>
+
+<p class="entree">Until now, AI answered. It is now starting to act.</p>
+
+<h3>IV.1 The agent loop: goal, tool, observation, decision, verification, done</h3>
+<p>An agent is not a different AI: it is the same model, placed in a loop. Instead of giving an answer and stopping, it acts, looks at the result, decides what comes next, checks, and starts again until the goal is reached. This loop is often described in its English form: GOAL, TOOL, OBSERVE, DECIDE, CHECK, DONE.</p>
+
+<h3>IV.2 A question takes one turn, a task takes dozens</h3>
+<p>Each turn of the loop is a new call to the model, which must reread what came before: the instructions, the steps already taken, the results obtained, with techniques to lighten the load. A task therefore costs far more than a question, and the mechanism described in chapter II repeats at every step.</p>
+<p>Verification has its limits too: an agent can make mistakes while checking, and declare a task successful when it is not. Human review remains necessary.</p>
+<p>A single voice can carry a simple task. For a long and complex one, it runs out of breath: too many steps, too much text to reread, too many chances of error. Hence the idea of sharing the work among several agents.</p>
+
+
+<nav class="doc">
+  <a class="centre" href="index.html">Back to the document overview</a>
+  <a href="chapitre-III.html">&larr; Chapter III</a>
+  <a href="chapitre-V.html">Chapter V &rarr;</a>
+</nav>
+</div>
 </main>
+<script>
+  /* Bascule FR / EN, mémorisée pour toutes les pages du document */
+  (function () {
+    var root = document.documentElement;
+    function marquer() {
+      var en = root.classList.contains('en');
+      document.querySelectorAll('.langues button').forEach(function (b) {
+        b.classList.toggle('actif', (b.getAttribute('data-l') === 'en') === en);
+      });
+    }
+    document.querySelectorAll('.langues button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var l = b.getAttribute('data-l');
+        root.classList.toggle('en', l === 'en');
+        root.lang = l;
+        try { localStorage.setItem('6v-doc-lang', l); } catch (e) {}
+        marquer();
+      });
+    });
+    marquer();
+  })();
+</script>
 </body>
 </html>

@@ -64,10 +64,32 @@
   nav.doc a:hover { text-decoration: underline; }
   nav.doc .centre { text-align: center; flex: 1 1 100%; order: -1; margin-bottom: 0.4rem; }
   @media print { nav.doc { display: none; } }
+  /* Bascule FR / EN */
+  .langues { text-align: right; margin-bottom: 1rem; }
+  .langues button { font-family: Georgia, "Palatino Linotype", Palatino, serif; font-size: 0.85rem;
+    letter-spacing: 0.1em; background: none; border: 1px solid #b8892e; color: #16264a;
+    padding: 0.25rem 0.7rem; cursor: pointer; }
+  .langues button + button { border-left: none; }
+  .langues button.actif { background: #b8892e; color: #fff; }
+  html.en .fr, html:not(.en) .en { display: none; }
+  @media print { .langues { display: none; } }
 </style>
+<script>
+  /* Applique la langue mémorisée avant l'affichage, pour éviter un clignotement */
+  (function () {
+    var l = 'fr';
+    try { l = localStorage.getItem('6v-doc-lang') || 'fr'; } catch (e) {}
+    if (location.search.indexOf('lang=en') !== -1) l = 'en';
+    if (l === 'en') { document.documentElement.classList.add('en'); document.documentElement.lang = 'en'; }
+  })();
+</script>
 </head>
 <body>
 <main>
+<div class="langues"><button type="button" data-l="fr">FR</button><button type="button" data-l="en">EN</button></div>
+
+<!-- ===================== FRANÇAIS ===================== -->
+<div class="fr">
 
 <h2>Annexe : sources, hypothèses de calcul et taux de change</h2>
 
@@ -115,6 +137,79 @@
   <a href="chapitre-VIII.html">&larr; Chapitre VIII</a>
   <a href="page-finale.html">Page finale &rarr;</a>
 </nav>
+</div>
+
+<!-- ===================== ENGLISH ===================== -->
+<div class="en">
+<h2>Appendix: sources, calculation assumptions and exchange rates</h2>
+
+<table>
+  <caption>Sources, from most recent to oldest</caption>
+  <thead><tr><th>Date</th><th>Source</th></tr></thead>
+  <tbody>
+    <tr><td>Early October 2026</td><td>Press (Clubic, emarketerz): free access to Gemini limited to the lightest model, from 9 October 2026. (Chapters III, VIII)</td></tr>
+    <tr><td>Early October 2026</td><td>David Robinson, essay published in The Atlantic, reported by TechCrunch on 3 October 2026. (Chapter VI)</td></tr>
+    <tr><td>18 September 2026</td><td>European Central Bank, euro reference rate. (Chapters II, V)</td></tr>
+    <tr><td>2026</td><td>Lignes d'Azur, Nice: single journey at €1.70. (Chapter II)</td></tr>
+    <tr><td>2026</td><td>Anthropic, public API pricing, Claude Sonnet 5.5. (Chapters II, V)</td></tr>
+    <tr><td>21 August 2025</td><td>Google, "Measuring the environmental impact of delivering AI at Google Scale": 0.24&nbsp;Wh and 0.26&nbsp;ml of water per median text request. (Chapters III, VIII)</td></tr>
+    <tr><td>13 June 2025</td><td>Anthropic, "How we built our multi-agent research system": extra cost of agents (4 and 15 times), gains in time and quality, accumulation of errors, limits of coordination. (Chapters IV to VIII)</td></tr>
+  </tbody>
+</table>
+
+<table>
+  <caption>Calculation assumptions</caption>
+  <thead><tr><th>Element</th><th>Assumption used</th></tr></thead>
+  <tbody>
+    <tr><td>Costs</td><td>Calculated from the public prices in force when the document was written.</td></tr>
+    <tr><td>The page</td><td>300 words.</td></tr>
+    <tr><td>The word</td><td>About 1.5 tokens per French word.</td></tr>
+    <tr><td>The exchange</td><td>A question of 50 words, an answer of 300 words, and 3,000 tokens of company instructions read at each exchange.</td></tr>
+    <tr><td>Light use (one hour)</td><td>10 exchanges: the human writes about 2 pages, the AI about 10.</td></tr>
+    <tr><td>Heavy use (one hour)</td><td>30 exchanges: the human writes about 5 pages, the AI about 30.</td></tr>
+    <tr><td>The cost range</td><td>Low with caching of the reread context, high without.</td></tr>
+    <tr><td>The multipliers 4 and 15</td><td>Applied to one hour of heavy dialogue: an order of magnitude.</td></tr>
+    <tr><td>Error propagation (95% and 99%)</td><td>A mathematical illustration, not a measurement.</td></tr>
+    <tr><td>Everyday prices</td><td>Coffee: about €1.80; baguette: about €1.10 (benchmarks, Nice, October 2026).</td></tr>
+  </tbody>
+</table>
+
+<h3>Exchange rate</h3>
+<p>€1 = $1.146, ECB reference rate of 18 September 2026, used for all calculations in the document.</p>
+
+<h3>Methodological note</h3>
+<p>Document written by five AI voices (ChatGPT, Claude, Gemini, Grok, Muse) and one human who arbitrates and validates.</p>
+<p>Gemini, Grok and Muse worked on free plans; Claude and ChatGPT temporarily on paid plans, to move the work forward.</p>
+
+
+<nav class="doc">
+  <a class="centre" href="index.html">Back to the document overview</a>
+  <a href="chapitre-VIII.html">&larr; Chapter VIII</a>
+  <a href="page-finale.html">Final page &rarr;</a>
+</nav>
+</div>
 </main>
+<script>
+  /* Bascule FR / EN, mémorisée pour toutes les pages du document */
+  (function () {
+    var root = document.documentElement;
+    function marquer() {
+      var en = root.classList.contains('en');
+      document.querySelectorAll('.langues button').forEach(function (b) {
+        b.classList.toggle('actif', (b.getAttribute('data-l') === 'en') === en);
+      });
+    }
+    document.querySelectorAll('.langues button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var l = b.getAttribute('data-l');
+        root.classList.toggle('en', l === 'en');
+        root.lang = l;
+        try { localStorage.setItem('6v-doc-lang', l); } catch (e) {}
+        marquer();
+      });
+    });
+    marquer();
+  })();
+</script>
 </body>
 </html>

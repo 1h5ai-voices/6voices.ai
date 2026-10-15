@@ -64,10 +64,32 @@
   nav.doc a:hover { text-decoration: underline; }
   nav.doc .centre { text-align: center; flex: 1 1 100%; order: -1; margin-bottom: 0.4rem; }
   @media print { nav.doc { display: none; } }
+  /* Bascule FR / EN */
+  .langues { text-align: right; margin-bottom: 1rem; }
+  .langues button { font-family: Georgia, "Palatino Linotype", Palatino, serif; font-size: 0.85rem;
+    letter-spacing: 0.1em; background: none; border: 1px solid #b8892e; color: #16264a;
+    padding: 0.25rem 0.7rem; cursor: pointer; }
+  .langues button + button { border-left: none; }
+  .langues button.actif { background: #b8892e; color: #fff; }
+  html.en .fr, html:not(.en) .en { display: none; }
+  @media print { .langues { display: none; } }
 </style>
+<script>
+  /* Applique la langue mémorisée avant l'affichage, pour éviter un clignotement */
+  (function () {
+    var l = 'fr';
+    try { l = localStorage.getItem('6v-doc-lang') || 'fr'; } catch (e) {}
+    if (location.search.indexOf('lang=en') !== -1) l = 'en';
+    if (l === 'en') { document.documentElement.classList.add('en'); document.documentElement.lang = 'en'; }
+  })();
+</script>
 </head>
 <body>
 <main>
+<div class="langues"><button type="button" data-l="fr">FR</button><button type="button" data-l="en">EN</button></div>
+
+<!-- ===================== FRANÇAIS ===================== -->
+<div class="fr">
 
 <h2>VI. Coordination, erreurs et contrôle : qui tient les commandes ?</h2>
 
@@ -122,6 +144,86 @@
   <a href="chapitre-V.html">&larr; Chapitre V</a>
   <a href="chapitre-VII.html">Chapitre VII &rarr;</a>
 </nav>
+</div>
+
+<!-- ===================== ENGLISH ===================== -->
+<div class="en">
+<h2>VI. Coordination, errors and control: who is in charge?</h2>
+
+<table>
+  <caption>How does a small error become a large one?</caption>
+  <thead><tr><th>Situation</th><th>Result</th></tr></thead>
+  <tbody>
+    <tr><td>A step that is 95% reliable</td><td>Over 5 chained steps, the whole task succeeds about 3 times out of 4.</td></tr>
+    <tr><td>The same reliability over 20 steps</td><td>The whole task succeeds only about 1 time in 3.</td></tr>
+    <tr><td>A step that is 99% reliable</td><td>Over 20 steps, the task succeeds about 4 times out of 5.</td></tr>
+    <tr><td>What this shows</td><td>The longer the chain, the stronger each link must be. (A calculation for illustration, not a measure of the real reliability of agents.)</td></tr>
+  </tbody>
+</table>
+
+<table>
+  <caption>Where must humans stay in control?</caption>
+  <thead><tr><th>Moment</th><th>Role of the human</th></tr></thead>
+  <tbody>
+    <tr><td>At the start</td><td>The human sets the goal and what a good result looks like.</td></tr>
+    <tr><td>Before an irreversible action</td><td>Paying, sending, deleting, publishing: the agent must ask for human approval.</td></tr>
+    <tr><td>During the work</td><td>An independent checker, which does not use the same information as the one producing the work, verifies the results.</td></tr>
+    <tr><td>At the end</td><td>The human reviews and validates. An agent can declare a task successful when it is not.</td></tr>
+  </tbody>
+</table>
+
+<table>
+  <caption>What can we learn from nuclear power and aviation?</caption>
+  <thead><tr><th>Principle</th><th>What it means</th></tr></thead>
+  <tbody>
+    <tr><td>Redundancy</td><td>Several layers of protection, so that an isolated error does not lead to disaster.</td></tr>
+    <tr><td>The checklist</td><td>Steps verified one by one, always in the same order.</td></tr>
+    <tr><td>The black box</td><td>Every action of the agent is recorded, to understand afterwards what happened.</td></tr>
+    <tr><td>Learning from experience</td><td>Every incident is reported and analyzed, so that it does not happen again.</td></tr>
+    <tr><td>The stop button</td><td>The human can interrupt the agent at any time.</td></tr>
+  </tbody>
+</table>
+
+<h3>VI.1 When one error leads to another: chain propagation</h3>
+<p>In an organization of agents, each agent works from what the others pass on to it. The researcher brings back a bad source, the analyst reasons on it, the writer puts it into shape. Each step adds confidence to a false basis, and the final result is an answer that is wrong, but coherent. The longer the chain, the harder it becomes to trace the error back to its origin. Anthropic acknowledges this in its 2025 publication: with agents, errors accumulate, and a small failure can derail the whole task.</p>
+
+<h3>VI.2 Who controls the whole, and how far do humans stay in charge?</h3>
+<p>The more autonomous the system, the more organized control must be. Humans cannot check every step; they must therefore choose where to step in: at the start, before any irreversible action, and at the end. One agent can check another's work, but a system can also repeat its own error if all its checks use the same information. (Our own method is a modest illustration: five voices work, one human arbitrates and validates each chapter.)</p>
+
+<h3>VI.3 Learning from nuclear and aviation safety</h3>
+<p>In October 2026, David Robinson, formerly in charge of safety reports at OpenAI, called on AI labs to operate like nuclear power plants or airports: with several layers of protection, so that a human error, which is inevitable, does not lead to disaster. These sectors are not safe because they never make mistakes, but because they have learned to catch their errors before they become serious.</p>
+
+<p class="entree" style="margin-top:2rem;color:var(--or);font-size:1.1rem;">The question is therefore no longer only: "What can an organization of AIs do?" It becomes: "Who can stop it when it goes wrong?"</p>
+
+
+<nav class="doc">
+  <a class="centre" href="index.html">Back to the document overview</a>
+  <a href="chapitre-V.html">&larr; Chapter V</a>
+  <a href="chapitre-VII.html">Chapter VII &rarr;</a>
+</nav>
+</div>
 </main>
+<script>
+  /* Bascule FR / EN, mémorisée pour toutes les pages du document */
+  (function () {
+    var root = document.documentElement;
+    function marquer() {
+      var en = root.classList.contains('en');
+      document.querySelectorAll('.langues button').forEach(function (b) {
+        b.classList.toggle('actif', (b.getAttribute('data-l') === 'en') === en);
+      });
+    }
+    document.querySelectorAll('.langues button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var l = b.getAttribute('data-l');
+        root.classList.toggle('en', l === 'en');
+        root.lang = l;
+        try { localStorage.setItem('6v-doc-lang', l); } catch (e) {}
+        marquer();
+      });
+    });
+    marquer();
+  })();
+</script>
 </body>
 </html>

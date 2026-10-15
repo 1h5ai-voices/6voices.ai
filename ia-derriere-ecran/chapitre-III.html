@@ -64,10 +64,32 @@
   nav.doc a:hover { text-decoration: underline; }
   nav.doc .centre { text-align: center; flex: 1 1 100%; order: -1; margin-bottom: 0.4rem; }
   @media print { nav.doc { display: none; } }
+  /* Bascule FR / EN */
+  .langues { text-align: right; margin-bottom: 1rem; }
+  .langues button { font-family: Georgia, "Palatino Linotype", Palatino, serif; font-size: 0.85rem;
+    letter-spacing: 0.1em; background: none; border: 1px solid #b8892e; color: #16264a;
+    padding: 0.25rem 0.7rem; cursor: pointer; }
+  .langues button + button { border-left: none; }
+  .langues button.actif { background: #b8892e; color: #fff; }
+  html.en .fr, html:not(.en) .en { display: none; }
+  @media print { .langues { display: none; } }
 </style>
+<script>
+  /* Applique la langue mémorisée avant l'affichage, pour éviter un clignotement */
+  (function () {
+    var l = 'fr';
+    try { l = localStorage.getItem('6v-doc-lang') || 'fr'; } catch (e) {}
+    if (location.search.indexOf('lang=en') !== -1) l = 'en';
+    if (l === 'en') { document.documentElement.classList.add('en'); document.documentElement.lang = 'en'; }
+  })();
+</script>
 </head>
 <body>
 <main>
+<div class="langues"><button type="button" data-l="fr">FR</button><button type="button" data-l="en">EN</button></div>
+
+<!-- ===================== FRANÇAIS ===================== -->
+<div class="fr">
 
 <h2>III. Les limites d'aujourd'hui de l'IA</h2>
 
@@ -115,6 +137,79 @@
   <a href="chapitre-II.html">&larr; Chapitre II</a>
   <a href="chapitre-IV.html">Chapitre IV &rarr;</a>
 </nav>
+</div>
+
+<!-- ===================== ENGLISH ===================== -->
+<div class="en">
+<h2>III. The limits of today's AI</h2>
+
+<table>
+  <caption>Where does today's architecture reach its limits?</caption>
+  <thead><tr><th>Limit</th><th>What to know</th></tr></thead>
+  <tbody>
+    <tr><td>The model</td><td>A single model must do everything: understand, keep track, reason, answer. Its capacity remains limited at peak hours.</td></tr>
+    <tr><td>The context</td><td>For each answer, it rereads the conversation (chapter II). As if you had to reread the whole book to add a single sentence.</td></tr>
+    <tr><td>Resources</td><td>Specialized processors, electricity, cooling water: none of it is unlimited.</td></tr>
+    <tr><td>Free access</td><td>When the bill rises, it shrinks: tighter quotas, lighter models, reserved features.</td></tr>
+    <tr><td>The system</td><td>A powerful model is no longer enough; the power becomes that of the system around it.</td></tr>
+  </tbody>
+</table>
+
+<table>
+  <caption>What does rereading become at large scale?</caption>
+  <thead><tr><th>Volume</th><th>Pages reread</th></tr></thead>
+  <tbody>
+    <tr><td>1,000 hours of dialogue</td><td>120,000&nbsp;to&nbsp;700,000 pages reread.</td></tr>
+    <tr><td>1 million hours of dialogue</td><td>120&nbsp;to&nbsp;700 million pages reread.</td></tr>
+  </tbody>
+</table>
+
+<h3>III.1 The architectural limits of today's single-agent model: why it breaks at large scale</h3>
+<p>Today, most consumer AIs rely on a single model that must handle everything: understanding the question, keeping track, reasoning and answering. For individual use, this works well. But when millions of people connect at the same time, the available machines are no longer enough: waits grow longer, answers slow down, limits appear. Even for paying users, capacity remains limited at peak hours.</p>
+
+<h3>III.2 Rereading the full context: why the cost rises with every turn</h3>
+<p>Chapter II showed it: to answer, the model rereads the conversation. Each exchange costs a little more than the one before, and the total grows faster than the conversation itself. At the scale of a million hours of dialogue, that means hundreds of millions of pages reread.</p>
+
+<h3>III.3 Computing, energy, availability</h3>
+<p>Every answer draws on specialized processors that are scarce and expensive. According to the estimate Google published in August 2025, a median text request uses about 0.24 Wh, the equivalent of less than nine seconds of television, and about five drops of water for cooling, excluding model training. That is little for one answer. Multiplied by billions of requests, it requires building computing centers the size of factories.</p>
+
+<h3>III.4 Why free access is shrinking</h3>
+<p>Free access does not eliminate the cost of computing. When demand rises, providers make trade-offs: tighter quotas, lighter models, features reserved for subscribers. A recent example: at Google, from 9 October 2026, free users only have access to the lightest Gemini model.</p>
+
+<h3>III.5 From the power of a model to the power of a system</h3>
+<p>A powerful model is no longer enough for long and complex tasks. The power becomes that of the system around it, with more capabilities, but also more complexity.</p>
+
+<p class="ouverture">What happens when AI no longer just has to answer a question, but has to carry out a task?</p>
+
+
+<nav class="doc">
+  <a class="centre" href="index.html">Back to the document overview</a>
+  <a href="chapitre-II.html">&larr; Chapter II</a>
+  <a href="chapitre-IV.html">Chapter IV &rarr;</a>
+</nav>
+</div>
 </main>
+<script>
+  /* Bascule FR / EN, mémorisée pour toutes les pages du document */
+  (function () {
+    var root = document.documentElement;
+    function marquer() {
+      var en = root.classList.contains('en');
+      document.querySelectorAll('.langues button').forEach(function (b) {
+        b.classList.toggle('actif', (b.getAttribute('data-l') === 'en') === en);
+      });
+    }
+    document.querySelectorAll('.langues button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var l = b.getAttribute('data-l');
+        root.classList.toggle('en', l === 'en');
+        root.lang = l;
+        try { localStorage.setItem('6v-doc-lang', l); } catch (e) {}
+        marquer();
+      });
+    });
+    marquer();
+  })();
+</script>
 </body>
 </html>
