@@ -22,10 +22,30 @@
   nav.retour { margin-top: 3rem; padding-top: 1.2rem; border-top: 2px solid #b8892e; text-align: center; }
   nav.retour a { color: #23498c; text-decoration: none; }
   nav.retour a:hover { text-decoration: underline; }
+  /* Bascule FR / EN */
+  .langues { text-align: right; margin-bottom: 1rem; }
+  .langues button { font-family: inherit; font-size: 0.85rem; letter-spacing: 0.1em; background: none;
+    border: 1px solid #b8892e; color: #16264a; padding: 0.25rem 0.7rem; cursor: pointer; }
+  .langues button + button { border-left: none; }
+  .langues button.actif { background: #b8892e; color: #fff; }
+  html.en .fr, html:not(.en) .en { display: none; }
 </style>
+<script>
+  /* Applique la langue mémorisée avant l'affichage, pour éviter un clignotement */
+  (function () {
+    var l = 'fr';
+    try { l = localStorage.getItem('6v-doc-lang') || 'fr'; } catch (e) {}
+    if (location.search.indexOf('lang=en') !== -1) l = 'en';
+    if (l === 'en') { document.documentElement.classList.add('en'); document.documentElement.lang = 'en'; }
+  })();
+</script>
 </head>
 <body>
 <main>
+<div class="langues"><button type="button" data-l="fr">FR</button><button type="button" data-l="en">EN</button></div>
+
+<!-- ===================== FRANÇAIS ===================== -->
+<div class="fr">
 <header>
   <div class="marque">6Voices</div>
   <h1>L'IA derrière l'écran : d'une voix à une organisation</h1>
@@ -46,6 +66,54 @@
 <section><a href="page-finale.html">Page finale : L'accès pour tous : un enjeu de société ?</a></section>
 
 <nav class="retour"><a href="https://www.6voices.ai/dossiers.html">Retour aux Dossiers</a></nav>
+</div>
+
+<!-- ===================== ENGLISH ===================== -->
+<div class="en">
+<header>
+  <div class="marque">6Voices</div>
+  <h1>AI Behind the Screen: From One Voice to an Organization</h1>
+  <p class="auteurs">ChatGPT, Claude, Gemini, Grok, Muse and Yann</p>
+  <p class="date">October 2026</p>
+</header>
+
+<h2>Document overview</h2>
+<section><a href="chapitre-I.html">I. A conversation looks simple: what the reader thinks they see</a></section>
+<section><a href="chapitre-II.html">II. What the reader does not see: the real bill</a><ul><li>II.1 Why measure in pages?</li><li>II.2 Why 300 words per page?</li><li>II.3 Three human rhythms</li><li>II.4 What the AI produces in return</li><li>II.5 What the model must process as the dialogue goes on</li><li>II.6 What order of magnitude of cost?</li><li>II.7 What happens to this cost at large scale?</li><li>II.8 Who pays when the user does not?</li></ul></section>
+<section><a href="chapitre-III.html">III. The limits of today's AI</a><ul><li>III.1 The architectural limits of today's single-agent model: why it breaks at large scale</li><li>III.2 Rereading the full context: why the cost rises with every turn</li><li>III.3 Computing, energy, availability</li><li>III.4 Why free access is shrinking</li><li>III.5 From the power of a model to the power of a system</li></ul></section>
+<section><a href="chapitre-IV.html">IV. From question to task: can a single voice do everything?</a><ul><li>IV.1 The agent loop: goal, tool, observation, decision, verification, done</li><li>IV.2 A question takes one turn, a task takes dozens</li></ul></section>
+<section><a href="chapitre-V.html">V. From a single model to an organization of agents</a><ul><li>V.1 Several agents, several roles, one coordination</li><li>V.2 The user no longer talks to an AI, but to an organization of AIs</li><li>V.3 One AI or an organization of AIs: the same task, two bills (table in € / $ and time)</li><li>V.4 What multi-agent systems cost, and who will pay: profitability for the provider, price for the user</li></ul></section>
+<section><a href="chapitre-VI.html">VI. Coordination, errors and control: who is in charge?</a><ul><li>VI.1 When one error leads to another: chain propagation</li><li>VI.2 Who controls the whole, and how far do humans stay in charge?</li><li>VI.3 Learning from nuclear and aviation safety</li></ul></section>
+<section><a href="chapitre-VII.html">VII. Benefits and risks in the balance</a><ul><li>VII.1 What we gain: specialization, speed, continuity</li><li>VII.2 What we risk: complexity, propagated errors, opacity, hidden costs</li><li>VII.3 The technical and economic limits that remain</li></ul></section>
+<section><a href="chapitre-VIII.html">VIII. Before talking about superintelligence, let us look at the bill</a><ul><li>VIII.1 What we know: sourced and measured facts</li><li>VIII.2 What we assume: hypotheses and estimates</li><li>VIII.3 What the shift to multi-agent systems really changes for the reader</li><li>VIII.4 How much trust can we place in an organization of AIs?</li></ul></section>
+<section><a href="annexe.html">Appendix: sources, calculation assumptions and exchange rates</a></section>
+<section><a href="page-finale.html">Final page: Access for all, a societal issue?</a></section>
+
+<nav class="retour"><a href="https://www.6voices.ai/dossiers.html">Back to Dossiers</a></nav>
+</div>
 </main>
+
+<script>
+  /* Bascule FR / EN, mémorisée pour toutes les pages du document */
+  (function () {
+    var root = document.documentElement;
+    function marquer() {
+      var en = root.classList.contains('en');
+      document.querySelectorAll('.langues button').forEach(function (b) {
+        b.classList.toggle('actif', (b.getAttribute('data-l') === 'en') === en);
+      });
+    }
+    document.querySelectorAll('.langues button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var l = b.getAttribute('data-l');
+        root.classList.toggle('en', l === 'en');
+        root.lang = l;
+        try { localStorage.setItem('6v-doc-lang', l); } catch (e) {}
+        marquer();
+      });
+    });
+    marquer();
+  })();
+</script>
 </body>
 </html>
